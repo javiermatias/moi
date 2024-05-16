@@ -8,3 +8,5 @@ Styling css
 //Styling global module in root
 //local like home.module.css
 //inline with tailwindcss
+make secret key
+openssl rand -base64 32
