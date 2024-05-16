@@ -7,6 +7,20 @@ const {
 } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
+async function addAdmin(client) {
+  const insertedUsers = await Promise.all(
+    users.map(async (user) => {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      return client.sql`
+      INSERT INTO users (id, name, email, password)
+      VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+      ON CONFLICT (id) DO NOTHING;
+    `;
+    })
+  );
+
+}
+
 async function seedUsers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -16,7 +30,8 @@ async function seedUsers(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        role TEXT NOT NULL
       );
     `;
 
@@ -162,11 +177,11 @@ async function seedRevenue(client) {
 
 async function main() {
   const client = await db.connect();
-
-  await seedUsers(client);
-  await seedCustomers(client);
-  await seedInvoices(client);
-  await seedRevenue(client);
+  await addAdmin(client)
+  //await seedUsers(client);
+  //await seedCustomers(client);
+  //await seedInvoices(client);
+  //await seedRevenue(client);
 
   await client.end();
 }
