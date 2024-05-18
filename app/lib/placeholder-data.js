@@ -1,19 +1,35 @@
 // This file contains placeholder data that you'll be replacing with real data in the Data Fetching chapter:
 // https://nextjs.org/learn/dashboard-app/fetching-data
+/*     CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            nombre VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(50) DEFAULT 'agente' NOT NULL,
+            numero VARCHAR(255) NOT NULL,
+            posicion VARCHAR(255) NOT NULL,
+            proyecto VARCHAR(255) NOT NULL
+        ); */
 const users = [
-  /*  {
-     id: '410544b2-4001-4271-9855-fec4b6a6442a',
-     name: 'User',
-     email: 'user@nextmail.com',
-     password: '123456',
-     role: 'agente'
-   }, */
   {
-    id: '410544b2-4001-4271-9855-fec4b6a6442b',
-    name: 'User',
+
+    nombre: 'User',
+    email: 'agente@agente.com',
+    password: '123456',
+    role: 'agente',
+    numero: '23232323',
+    posicion: 'agente normal',
+    proyecto: 'SMS'
+  },
+  {
+
+    nombre: 'User',
     email: 'moi@moi.com',
     password: '123456',
-    role: 'supervisor'
+    role: 'supervisor',
+    numero: '23232323',
+    posicion: 'agente normal',
+    proyecto: 'SMS'
   }
 ];
 

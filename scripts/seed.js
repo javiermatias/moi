@@ -11,13 +11,27 @@ async function addAdmin(client) {
   const insertedUsers = await Promise.all(
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
-      return client.sql`
-      INSERT INTO users (id, name, email, password)
-      VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-      ON CONFLICT (id) DO NOTHING;
+      return client.sql` INSERT INTO users (
+        nombre, 
+        email, 
+        password, 
+        role, 
+        numero, 
+        posicion, 
+        proyecto
+      ) VALUES (
+        ${user.nombre}, 
+        ${user.email}, 
+        ${user.password}, 
+        ${user.role}, 
+        ${user.numero}, 
+        ${user.posicion}, 
+        ${user.proyecto}
+      )
     `;
     })
   );
+
 
 }
 

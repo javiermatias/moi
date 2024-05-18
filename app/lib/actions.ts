@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { User } from './definitions';
 
 export type State = {
     errors?: {
@@ -31,6 +32,47 @@ const FormSchema = z.object({
 });
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
+
+export async function registerUser(user: User) {
+    /*     CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            nombre VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(50) DEFAULT 'agente' NOT NULL,
+            numero VARCHAR(255) NOT NULL,
+            posicion VARCHAR(255) NOT NULL,
+            proyecto VARCHAR(255) NOT NULL
+        ); */
+    try {
+        await sql`
+        INSERT INTO users (
+          nombre, 
+          email, 
+          password, 
+          role, 
+          numero, 
+          posicion, 
+          proyecto
+        ) VALUES (
+          ${user.nombre}, 
+          ${user.email}, 
+          ${user.password}, 
+          ${user.role}, 
+          ${user.numero}, 
+          ${user.posicion}, 
+          ${user.proyecto}
+        )
+      `;
+    } catch (error) {
+        // If a database error occurs, return a more specific error.
+        return {
+            message: 'Database Error: Failed to Register.',
+        };
+    }
+
+}
+
 
 export async function createInvoice(prevState: State, formData: FormData) {
     const validatedFields = CreateInvoice.safeParse({

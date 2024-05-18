@@ -7,18 +7,20 @@ export const authConfig = {
     callbacks: {
         authorized({ auth, request }) {
             const isLoggedIn = !!auth?.user;
-            const isOnDashboard = request.nextUrl.pathname.startsWith('/agente/dashboard');
-            const isOnSupervisorDashboard = request.nextUrl.pathname.startsWith('/supervisor/dashboard');
+            const isAgente = request.nextUrl.pathname.startsWith('/agente');
+            const isSupervisor = request.nextUrl.pathname.startsWith('/supervisor');
+            const register = request.nextUrl.pathname.startsWith('/register');
 
+            if (register) return true;
             if (!isLoggedIn) return false;
-            if (isOnSupervisorDashboard) {
+            if (isSupervisor) {
                 if (isLoggedIn && auth?.user?.email === 'moi@moi.com') return true;
                 return false; // Redirect unauthenticated users to login page
             } else if (isLoggedIn && auth?.user?.email === 'moi@moi.com') {
                 return Response.redirect(new URL('/supervisor/dashboard', request.nextUrl));
             }
 
-            if (isOnDashboard) {
+            if (isAgente) {
                 if (isLoggedIn) return true;
                 return false; // Redirect unauthenticated users to login page
             } else if (isLoggedIn) {
