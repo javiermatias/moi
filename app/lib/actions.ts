@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { User } from './definitions';
+import { setTimeout } from 'timers';
 
 export type State = {
     errors?: {
@@ -33,43 +34,42 @@ const FormSchema = z.object({
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
-export async function registerUser(user: User) {
-    /*     CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            nombre VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL,
-            role VARCHAR(50) DEFAULT 'agente' NOT NULL,
-            numero VARCHAR(255) NOT NULL,
-            posicion VARCHAR(255) NOT NULL,
-            proyecto VARCHAR(255) NOT NULL
-        ); */
-    try {
-        await sql`
-        INSERT INTO users (
-          nombre, 
-          email, 
-          password, 
-          role, 
-          numero, 
-          posicion, 
-          proyecto
-        ) VALUES (
-          ${user.nombre}, 
-          ${user.email}, 
-          ${user.password}, 
-          ${user.role}, 
-          ${user.numero}, 
-          ${user.posicion}, 
-          ${user.proyecto}
-        )
-      `;
-    } catch (error) {
-        // If a database error occurs, return a more specific error.
-        return {
-            message: 'Database Error: Failed to Register.',
-        };
-    }
+export async function registerUser(formData: FormData) {
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log(formData.get('nombre')?.toString());
+    console.log(formData.get('email')?.toString());
+    console.log(formData.get('password')?.toString());
+    console.log(formData.get('numero')?.toString());
+    console.log(formData.get('posicion')?.toString());
+    console.log(formData.get('proyecto')?.toString());
+    redirect('/login');
+    /*    try {
+           await sql`
+           INSERT INTO users (
+             nombre, 
+             email, 
+             password, 
+             role, 
+             numero, 
+             posicion, 
+             proyecto
+           ) VALUES (
+             ${formData.get('nombre')?.toString()}, 
+             ${formData.get('email')?.toString()}, 
+             ${formData.get('password')?.toString()}, 
+             ${formData.get('role')?.toString()}, 
+             ${formData.get('numero')?.toString()}, 
+             ${formData.get('posicion')?.toString()}, 
+             ${formData.get('proyecto')?.toString()}
+           )
+         `;
+       } catch (error) {
+          
+           return {
+               message: 'Database Error: Failed to Register.',
+           };
+       } */
 
 }
 
@@ -136,7 +136,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 export async function deleteInvoice(id: string) {
-    throw new Error('Failed to Delete Invoice');
+
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath('/dashboard/invoices');
 }

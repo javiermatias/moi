@@ -12,3 +12,6 @@ make secret key
 openssl rand -base64 32
 
 npm run seed
+
+
+

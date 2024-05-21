@@ -27,7 +27,7 @@ export const authConfig = {
                 return Response.redirect(new URL('/agente/dashboard', request.nextUrl));
             }
 
-            return true;
+            return false;
 
 
 
