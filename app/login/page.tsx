@@ -13,7 +13,7 @@ export default function LoginForm() {
         <div className="flex min-h-screen items-center justify-center bg-gray-100">
             <form className="w-full max-w-md space-y-3 p-6 md:w-1/2 bg-white rounded-lg shadow-lg">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-                    <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+                    <h1 className={`${lusitana.className} mb-3 text-2xl text-center`}>
                         Ingreso.
                     </h1>
                     <div className="w-full">

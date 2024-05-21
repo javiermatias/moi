@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { registerUser } from '../lib/actions';
 import { useFormStatus } from 'react-dom';
+import { useFormState } from 'react-dom';
+import { EMPTY_FORM_STATE } from '../lib/definitions';
 type SubmitButtonProps = {
     label: string;
     loading: React.ReactNode;
@@ -23,6 +25,8 @@ const SubmitButton = ({ label, loading }: SubmitButtonProps) => {
 
 export default function RegisterForm() {
     const initialState = { message: null, errors: {} };
+
+    const [formState, action] = useFormState(registerUser, EMPTY_FORM_STATE);
     // const [state, dispatch] = useFormState(registerUser, initialState);
 
     /*  const {
@@ -68,7 +72,7 @@ export default function RegisterForm() {
         <>
 
             <div className="container mx-auto py-8">
-                <form action={registerUser} className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+                <form action={action} className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
 
                     <h2 className="text-2xl mb-6 text-center text-gray-400">Registro Usuario</h2>
 
@@ -85,7 +89,9 @@ export default function RegisterForm() {
                             name="nombre"
                             placeholder="Juan Perez"
                         />
-
+                        <span className="text-xs text-red-400">
+                            {formState.fieldErrors['nombre']?.[0]}
+                        </span>
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -99,6 +105,9 @@ export default function RegisterForm() {
                             name="email"
                             placeholder="juan@ejemplo.com"
                         />
+                        <span className="text-xs text-red-400">
+                            {formState.fieldErrors['email']?.[0]}
+                        </span>
 
                     </div>
                     <div className="mb-4">
@@ -114,6 +123,9 @@ export default function RegisterForm() {
                                 name="password"
                                 placeholder=""
                             />
+                            <span className="text-xs text-red-400">
+                                {formState.fieldErrors['password']?.[0]}
+                            </span>
 
                             <button
                                 type="button"
@@ -137,6 +149,9 @@ export default function RegisterForm() {
                             name="numero"
                             placeholder="101..."
                         />
+                        <span className="text-xs text-red-400">
+                            {formState.fieldErrors['numero']?.[0]}
+                        </span>
 
                     </div>
 
@@ -152,6 +167,9 @@ export default function RegisterForm() {
                             name="posicion"
                             placeholder="Posición Colaborador"
                         />
+                        <span className="text-xs text-red-400">
+                            {formState.fieldErrors['posicion']?.[0]}
+                        </span>
 
                     </div>
 
@@ -167,17 +185,13 @@ export default function RegisterForm() {
                             name="proyecto"
                             placeholder="Proyecto al que perteneces"
                         />
+                        <span className="text-xs text-red-400">
+                            {formState.fieldErrors['proyecto']?.[0]}
+                        </span>
                     </div>
 
-                    {/*                <button
-                        className="w-full bg-blue-700 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300"
-                        type="submit"
-
-                    >
-                        {pending ? 'Registrando...' : 'Registrar Usuario'}
-                    </button> */}
-
                     <SubmitButton label="Registrar Usuario" loading="Registrando..." />
+                    <span className="font-bold">{formState.message}</span>
 
                 </form>
             </div>

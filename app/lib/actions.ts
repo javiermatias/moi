@@ -3,11 +3,12 @@
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { z } from 'zod';
+import { ZodError, z } from 'zod';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { User } from './definitions';
+import { FormState, User } from './definitions';
 import { setTimeout } from 'timers';
+
 
 export type State = {
     errors?: {
@@ -17,6 +18,11 @@ export type State = {
     };
     message?: string | null;
 };
+
+/* type FormState = {
+    message: string;
+}; */
+
 
 const FormSchema = z.object({
     id: z.string(),
@@ -34,16 +40,39 @@ const FormSchema = z.object({
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
-export async function registerUser(formData: FormData) {
+// Define the schema
+const createRegisterSchema = z.object({
+    nombre: z.string().min(1, 'Nombre es requirido'),
+    email: z.string().email('Ingrese un email valido'),
+    password: z.string().min(6, 'Contraseña tiene que ser de al menos 6 caracteres'),
+    numero: z.string().min(1, 'Numero de empleado es requerido'),
+    posicion: z.string().min(1, 'Posicion es requerida'),
+    proyecto: z.string().min(1, 'Projecto es requerido'),
+});
+export async function registerUser(formState: FormState,
+    formData: FormData) {
+    try {
+        const { nombre, email, password, numero, posicion, proyecto } = createRegisterSchema.parse({
+            nombre: formData.get('nombre')?.toString(),
+            email: formData.get('email')?.toString(),
+            password: formData.get('password')?.toString(),
+            numero: formData.get('numero')?.toString(),
+            posicion: formData.get('posicion')?.toString(),
+            proyecto: formData.get('proyecto')?.toString(),
+        });
+    } catch (error) {
+        return fromErrorToFormState(error);
+    }
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(formData.get('nombre')?.toString());
-    console.log(formData.get('email')?.toString());
-    console.log(formData.get('password')?.toString());
-    console.log(formData.get('numero')?.toString());
-    console.log(formData.get('posicion')?.toString());
-    console.log(formData.get('proyecto')?.toString());
+    /*   console.log(formData.get('nombre')?.toString());
+      console.log(formData.get('email')?.toString());
+      console.log(formData.get('password')?.toString());
+      console.log(formData.get('numero')?.toString());
+      console.log(formData.get('posicion')?.toString());
+      console.log(formData.get('proyecto')?.toString()); */
     redirect('/login');
+    //return toFormState('SUCCESS', 'Message created');
     /*    try {
            await sql`
            INSERT INTO users (
@@ -159,3 +188,40 @@ export async function authenticate(
         throw error;
     }
 }
+
+export const fromErrorToFormState = (error: unknown) => {
+    if (error instanceof ZodError) {
+        return {
+            status: 'ERROR' as const,
+            message: '',
+            fieldErrors: error.flatten().fieldErrors,
+            timestamp: Date.now(),
+        };
+    } else if (error instanceof Error) {
+        return {
+            status: 'ERROR' as const,
+            message: error.message,
+            fieldErrors: {},
+            timestamp: Date.now(),
+        };
+    } else {
+        return {
+            status: 'ERROR' as const,
+            message: 'An unknown error occurred',
+            fieldErrors: {},
+            timestamp: Date.now(),
+        };
+    }
+};
+
+export const toFormState = (
+    status: FormState['status'],
+    message: string
+): FormState => {
+    return {
+        status,
+        message,
+        fieldErrors: {},
+        timestamp: Date.now(),
+    };
+};
