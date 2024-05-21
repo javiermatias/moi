@@ -60,45 +60,33 @@ export async function registerUser(formState: FormState,
             posicion: formData.get('posicion')?.toString(),
             proyecto: formData.get('proyecto')?.toString(),
         });
+        await sql`
+        INSERT INTO users (
+          nombre, 
+          email, 
+          password, 
+          role, 
+          numero, 
+          posicion, 
+          proyecto
+        ) VALUES (
+          ${nombre}, 
+          ${email}, 
+          ${password},
+          ${'AGENTE'}, 
+          ${numero}, 
+          ${posicion}, 
+          ${proyecto}
+        )
+      `;
+
     } catch (error) {
         return fromErrorToFormState(error);
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    /*   console.log(formData.get('nombre')?.toString());
-      console.log(formData.get('email')?.toString());
-      console.log(formData.get('password')?.toString());
-      console.log(formData.get('numero')?.toString());
-      console.log(formData.get('posicion')?.toString());
-      console.log(formData.get('proyecto')?.toString()); */
+
+
     redirect('/login');
-    //return toFormState('SUCCESS', 'Message created');
-    /*    try {
-           await sql`
-           INSERT INTO users (
-             nombre, 
-             email, 
-             password, 
-             role, 
-             numero, 
-             posicion, 
-             proyecto
-           ) VALUES (
-             ${formData.get('nombre')?.toString()}, 
-             ${formData.get('email')?.toString()}, 
-             ${formData.get('password')?.toString()}, 
-             ${formData.get('role')?.toString()}, 
-             ${formData.get('numero')?.toString()}, 
-             ${formData.get('posicion')?.toString()}, 
-             ${formData.get('proyecto')?.toString()}
-           )
-         `;
-       } catch (error) {
-          
-           return {
-               message: 'Database Error: Failed to Register.',
-           };
-       } */
 
 }
 
@@ -207,7 +195,7 @@ export const fromErrorToFormState = (error: unknown) => {
     } else {
         return {
             status: 'ERROR' as const,
-            message: 'An unknown error occurred',
+            message: 'Error desconocido',
             fieldErrors: {},
             timestamp: Date.now(),
         };
