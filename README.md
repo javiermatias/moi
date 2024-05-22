@@ -13,5 +13,11 @@ openssl rand -base64 32
 
 npm run seed
 
+Datos generales
+fecha_hora:date
+asunto:string
+lugar:string
+convocado_por:string
+
 
 
