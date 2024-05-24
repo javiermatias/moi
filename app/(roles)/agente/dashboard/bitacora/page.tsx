@@ -9,12 +9,10 @@ asunto:string
 lugar:string
 convocado_por:string
 id_user:number */
-import { useSession } from "next-auth/react"
+
 
 export default function Page() {
 
-    //const { session } = auth()
-    //console.dir(session);
     const {
         register,
         handleSubmit,

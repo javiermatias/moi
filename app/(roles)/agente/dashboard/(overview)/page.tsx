@@ -6,13 +6,9 @@ import { lusitana } from "../../../../ui/fonts";
 import { Suspense } from 'react';
 import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from '@/app/ui/skeletons';
 import { auth } from "@/auth";
-import { useSession } from "next-auth/react";
+
 
 export default async function Page() {
-  const session = await auth();
-  console.dir(session);
-  // const { status, data: session } = useSession()
-  //console.log(session)
 
   return (
     <main>

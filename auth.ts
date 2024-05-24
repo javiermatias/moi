@@ -43,12 +43,12 @@ export const { auth, signIn, signOut } = NextAuth({
         async jwt({ token, user }) {
             //console.log(token);
             //console.log(user);
-            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+
             return { ...token, ...user }
         },
         // If you want to use the role in client components
         async session({ session, token }) {
-            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+
             /*   if (session?.user) session.user.role = token.role
               return session */
             session.user = token as any
