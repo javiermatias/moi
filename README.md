@@ -18,6 +18,7 @@ fecha_hora:date
 asunto:string
 lugar:string
 convocado_por:string
+id_user:number
 
 
 
