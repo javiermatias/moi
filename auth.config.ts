@@ -10,8 +10,9 @@ export const authConfig = {
             const isAgente = request.nextUrl.pathname.startsWith('/agente');
             const isSupervisor = request.nextUrl.pathname.startsWith('/supervisor');
             const register = request.nextUrl.pathname.startsWith('/register');
-
+            const login = request.nextUrl.pathname.startsWith('/login');
             if (register) return true;
+            if (login && !isLoggedIn) return true;
             if (!isLoggedIn) return false;
             if (isSupervisor) {
                 if (isLoggedIn && auth?.user?.email === 'moi@moi.com') return true;
