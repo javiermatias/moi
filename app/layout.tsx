@@ -1,6 +1,6 @@
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
-import { SessionProvider } from "next-auth/react"
+import AuthWrapper from './auth_wrapper';
 export default function RootLayout({
   children,
 }: {
@@ -11,10 +11,9 @@ export default function RootLayout({
     <html lang="en">
 
       <body className={`${inter.className} antialiased`}>
-
-        {children}
-
-
+        <AuthWrapper> {/* Wrapping the entire app with AuthWrapper */}
+          {children}
+        </AuthWrapper>
       </body>
     </html>
   );
