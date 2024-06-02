@@ -12,6 +12,12 @@ id_user:number */
 
 
 export default function Page() {
+    /*   console.log('Client Side Rendering')
+  const { data: session } = useSession() // useSession()
+ 
+  useEffect(() => {
+    console.log(session); // console.log
+  }, [session]) */
 
     const {
         register,
@@ -30,7 +36,7 @@ export default function Page() {
             <div className="container mx-auto py-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
 
-                    <h2 className="text-md mb-6 text-center text-gray-400">Datos Personales: </h2>
+                    <h2 className="text-md mb-6 text-center text-gray-400">Datos Generales: </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
