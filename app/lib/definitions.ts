@@ -4,7 +4,13 @@
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type Bitacora = {
   semana: string;
+  asunto: string;
   nombre: string; //nombreColaborador
+  fecha: string;
+  lugar: string;
+  hora: string;
+  convocado: string;//convocadoPor
+  id_user: number; //id usuario
 
 }
 export type User = {

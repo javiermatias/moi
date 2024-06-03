@@ -1,4 +1,5 @@
 'use client'
+import { Bitacora } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { DateTime } from 'luxon';
@@ -7,11 +8,17 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 
-/* fecha_hora:date
-asunto:string
-lugar:string
-convocado_por:string
-id_user:number */
+/* export type Bitacora = {
+  semana: string;
+  asunto: string;
+  nombre: string; //nombreColaborador
+  fecha: string;
+  lugar: string;
+  hora: string;
+  convocado: string;//convocadoPor
+  id_user: number; //id usuario
+
+}*/
 
 
 export default function Page() {
@@ -23,6 +30,12 @@ export default function Page() {
   }, [session]) */
     const { data: session } = useSession()
     console.log(session)
+    // Create a DateTime instance for the current date
+    const currentDate = DateTime.local();
+
+    // Set the locale to Spanish
+    const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
+    console.log(spanishDate)
     const now = DateTime.now();
     console.log(now)
     console.log(now.toString())
@@ -41,6 +54,18 @@ export default function Page() {
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
 
     const onSubmit = async (data: FieldValues) => {
+
+        const bitacora: Bitacora = {
+            semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
+            asunto: getValues('asunto'),
+            nombre: getValues('nombre'),
+            fecha: "Your fecha value",
+            lugar: "Your lugar value",
+            hora: "Your hora value",
+            convocado: "Your convocadoPor value",
+            id_user: 123, // Your id usuario value
+        };
+
 
     }
     return (
@@ -85,6 +110,10 @@ export default function Page() {
                                 name="lugar"
                                 placeholder="Sala de..."
                             />
+                            {(errors.lugar != null) && (
+
+                                <p className="text-red-500">{`${errors.lugar.message}`}</p>
+                            )}
                         </div>
 
                         <div className="mb-4">
@@ -92,50 +121,21 @@ export default function Page() {
                                 Convocado por
                             </label>
                             <input
-                                {...register('convocado')}
+                                {...register('convocado', {
+                                    required: 'Convocado por es requerido',
+                                })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
                                 id="convocado"
                                 name="convocado"
                                 placeholder="Juan..."
                             />
-                        </div>
+                            {(errors.convocado != null) && (
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                Direccion
-                            </label>
-                            <input
-                                {...register('direccion', {
-                                    required: 'La direccion es requerida',
-                                })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                type="text"
-                                id="direccion"
-                                name="direccion"
-                                placeholder="Direccion actual"
-                            />
-                            {(errors.direccion != null) && (
-
-                                <p className="text-red-500">{`${errors.direccion.message}`}</p>
+                                <p className="text-red-500">{`${errors.convocado.message}`}</p>
                             )}
                         </div>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="celular">
-                                Celular
-                            </label>
-                            <input
-                                {...register('celular', {
-                                    required: 'El celular es requerido',
-                                })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                type="text"
-                                id="celular"
-                                name="celular"
-                                placeholder="351-XXXXX"
-                            />
-                        </div>
                     </div>
 
                     <button

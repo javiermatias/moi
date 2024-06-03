@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Steps } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 
 export default function Step({ id }: { id: number }) {
     const [step] = useState(id);
