@@ -1,6 +1,9 @@
 'use client'
 import Spinner from '@/app/ui/spiner'
-import { auth } from '@/auth';
+import Step from '@/app/ui/steps';
+import { DateTime } from 'luxon';
+import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 
@@ -18,6 +21,13 @@ export default function Page() {
   useEffect(() => {
     console.log(session); // console.log
   }, [session]) */
+    const { data: session } = useSession()
+    console.log(session)
+    const now = DateTime.now();
+    console.log(now)
+    console.log(now.toString())
+    console.log(DateTime.now().weekNumber)
+    console.log("Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber)
 
     const {
         register,
@@ -27,6 +37,9 @@ export default function Page() {
     } = useForm()
 
     const [loading, setLoading] = useState(false)
+    const searchParams = useSearchParams()
+    const numbStep = Number.parseInt(searchParams.get('id') || '0')
+
     const onSubmit = async (data: FieldValues) => {
 
     }
@@ -34,56 +47,57 @@ export default function Page() {
         <>
 
             <div className="container mx-auto py-8">
+                <Step id={numbStep}></Step>
+                <hr />
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
 
-                    <h2 className="text-md mb-6 text-center text-gray-400">Datos Generales: </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                Nombre y apellido
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="asunto">
+                                Asunto
                             </label>
                             <input
-                                {...register('nombre', {
-                                    required: 'El nombre y apellido es requerido',
+                                {...register('asunto', {
+                                    required: 'El asunto es requerido',
                                 })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
-                                id="nombre"
-                                name="nombre"
-                                placeholder="Juan Perez"
+                                id="asunto"
+                                name="asunto"
+                                placeholder="Reunion de proyecto..."
                             />
-                            {(errors.nombre != null) && (
+                            {(errors.asunto != null) && (
 
-                                <p className="text-red-500">{`${errors.nombre.message}`}</p>
+                                <p className="text-red-500">{`${errors.asunto.message}`}</p>
                             )}
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                                Email
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lugar">
+                                Lugar
                             </label>
                             <input
-                                {...register('email', {
-                                    required: 'El email es requerido',
+                                {...register('lugar', {
+                                    required: 'El lugar es requerido',
                                 })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="juan@ejemplo.com"
+                                type="text"
+                                id="lugar"
+                                name="lugar"
+                                placeholder="Sala de..."
                             />
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="legajo">
-                                Legajo
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="convocado">
+                                Convocado por
                             </label>
                             <input
-                                {...register('legajo')}
+                                {...register('convocado')}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
-                                id="legajo"
-                                name="legajo"
-                                placeholder="Opcional"
+                                id="convocado"
+                                name="convocado"
+                                placeholder="Juan..."
                             />
                         </div>
 

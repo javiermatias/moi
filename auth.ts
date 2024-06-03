@@ -41,16 +41,14 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     callbacks: {
         // Ref: https://authjs.dev/guides/basics/role-based-access-control#persisting-the-role
         async jwt({ token, user }) {
-            //console.log(token);
-            //console.log(user);
 
+            //console.log(token);
             return { ...token, ...user }
         },
         // If you want to use the role in client components
         async session({ session, token }) {
 
-            /*   if (session?.user) session.user.role = token.role
-              return session */
+
             session.user = token as any
             return session
         },
