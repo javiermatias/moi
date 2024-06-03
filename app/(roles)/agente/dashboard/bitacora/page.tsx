@@ -31,11 +31,8 @@ export default function Page() {
     const { data: session } = useSession()
     console.log(session)
     // Create a DateTime instance for the current date
-    const currentDate = DateTime.local();
 
-    // Set the locale to Spanish
-    const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
-    console.log(spanishDate)
+    //console.log(spanishDate)
     const now = DateTime.now();
     console.log(now)
     console.log(now.toString())
@@ -54,6 +51,10 @@ export default function Page() {
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
 
     const onSubmit = async (data: FieldValues) => {
+        const currentDate = DateTime.local();
+
+        // Set the locale to Spanish
+        const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
 
         const bitacora: Bitacora = {
             semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
