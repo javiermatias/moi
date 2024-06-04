@@ -4,10 +4,12 @@ import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { DateTime } from 'luxon';
 import { useSession } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
+import { useMutation, QueryClient } from '@tanstack/react-query'
 
+import { createBitacora } from '@/app/services/bitacora.service';
 /* export type Bitacora = {
   semana: string;
   asunto: string;
@@ -21,23 +23,11 @@ import { type FieldValues, useForm } from 'react-hook-form'
 }*/
 
 
-export default function Page() {
-    /*   console.log('Client Side Rendering')
-  const { data: session } = useSession() // useSession()
- 
-  useEffect(() => {
-    console.log(session); // console.log
-  }, [session]) */
-    const { data: session } = useSession()
-    console.log(session)
-    // Create a DateTime instance for the current date
+export default function DatosGenerales() {
 
-    //console.log(spanishDate)
-    const now = DateTime.now();
-    console.log(now)
-    console.log(now.toString())
-    console.log(DateTime.now().weekNumber)
-    console.log("Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber)
+    const { data: session } = useSession()
+    let user: any = { ...session?.user }
+    const queryClient = new QueryClient()
 
     const {
         register,
@@ -47,25 +37,38 @@ export default function Page() {
     } = useForm()
 
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
+    const mutation = useMutation({
+        mutationFn: createBitacora,
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ['bitacora'] })
+        },
+    })
 
     const onSubmit = async (data: FieldValues) => {
         const currentDate = DateTime.local();
 
+
         // Set the locale to Spanish
-        const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
+        //fecha formato: const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
+        //semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
+        //hora: const spanishHour = currentDate.setLocale("es").toFormat("hh:mm a");
 
         const bitacora: Bitacora = {
-            semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
+
             asunto: getValues('asunto'),
-            nombre: getValues('nombre'),
-            fecha: "Your fecha value",
-            lugar: "Your lugar value",
-            hora: "Your hora value",
-            convocado: "Your convocadoPor value",
-            id_user: 123, // Your id usuario value
+            nombre: user?.nombre,
+            fecha: currentDate.toString(),
+            lugar: getValues('lugar'),
+            convocado: getValues('convocado'),
+            id_user: Number.parseInt(user?.id || '0'), // Your id usuario value
         };
+        console.log(bitacora);
+        await mutation.mutateAsync(bitacora)
+        router.push('/agente/dashboard/despacho?id=1')
 
 
     }
@@ -78,6 +81,7 @@ export default function Page() {
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="asunto">
                                 Asunto

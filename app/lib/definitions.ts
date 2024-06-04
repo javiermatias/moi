@@ -3,12 +3,11 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type Bitacora = {
-  semana: string;
+  //semana: string;
   asunto: string;
   nombre: string; //nombreColaborador
   fecha: string;
   lugar: string;
-  hora: string;
   convocado: string;//convocadoPor
   id_user: number; //id usuario
 
