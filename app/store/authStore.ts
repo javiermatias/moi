@@ -29,15 +29,19 @@ export const useAuthStore = create<AuthState>()(
 )
 /* 
 export type Bitacora = {
-    //semana: string;
-    asunto: string;
-    nombre: string; //nombreColaborador
-    fecha: string;
-    lugar: string;
-    convocado: string;//convocadoPor
-    id_user: number; //id usuario
-  
-  } */
+  //semana: string;
+  asunto: string;
+  nombre: string; //nombreColaborador
+  fecha: string;
+  lugar: string;
+  convocado: string;//convocadoPor
+  id_user: number; //id usuario
+  id_despacho: string; //id despacho
+  nombre_despacho: string; //nombre despacho
+  nombre_atiende: string; //nombre atiende
+  cargo_atiende: string; //cargo de quein atiende
+
+} */
 
 export const useBitacoraStore = create<BitacoraState>()(
     devtools(
@@ -49,7 +53,11 @@ export const useBitacoraStore = create<BitacoraState>()(
                     fecha: '',
                     lugar: '',
                     convocado: '',//convocadoPor
-                    id_user: 0
+                    id_user: 0,
+                    id_despacho: '',
+                    nombre_despacho: '',
+                    nombre_atiende: '',
+                    cargo_atiende: ''
                 },
                 setBitacora: (bitacora) => { set({ bitacora }) }, // Update the state with the new incidencia object
 

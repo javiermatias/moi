@@ -10,6 +10,10 @@ export type Bitacora = {
   lugar: string;
   convocado: string;//convocadoPor
   id_user: number; //id usuario
+  id_despacho: string; //id despacho
+  nombre_despacho: string; //nombre despacho
+  nombre_atiende: string; //nombre atiende
+  cargo_atiende: string; //cargo de quein atiende
 
 }
 export type User = {

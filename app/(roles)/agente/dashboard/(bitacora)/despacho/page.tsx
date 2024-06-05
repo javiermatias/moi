@@ -11,14 +11,17 @@ import { useMutation, QueryClient } from '@tanstack/react-query'
 
 import { createBitacora } from '@/app/services/bitacora.service';
 /* export type Bitacora = {
-  semana: string;
+  //semana: string;
   asunto: string;
   nombre: string; //nombreColaborador
   fecha: string;
   lugar: string;
-  hora: string;
   convocado: string;//convocadoPor
   id_user: number; //id usuario
+  id_despacho: string; //id despacho
+  nombre_despacho: string; //nombre despacho
+  nombre_atiende: string; //nombre atiende
+  cargo_atiende: string; //cargo de quein atiende
 
 }*/
 
@@ -71,6 +74,10 @@ export default function Despacho() {
             lugar: getValues('lugar'),
             convocado: getValues('convocado'),
             id_user: Number.parseInt(user?.id || '0'), // Your id usuario value
+            id_despacho: getValues('despacho'),
+            nombre_despacho: getValues('nombredespacho'),
+            nombre_atiende: getValues('atiende'),
+            cargo_atiende: getValues('cargo')
         };
         console.log(bitacora);
         mutation.mutate(bitacora)
@@ -88,61 +95,81 @@ export default function Despacho() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="asunto">
-                                Asunto
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="despacho">
+                                ID despacho
                             </label>
                             <input
-                                {...register('asunto', {
-                                    required: 'El asunto es requerido',
+                                {...register('despacho', {
+                                    required: 'El el id de despacho es requerido',
                                 })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
-                                id="asunto"
-                                name="asunto"
-                                placeholder="Reunion de proyecto..."
+                                id="despacho"
+                                name="despacho"
+                                placeholder="101...."
                             />
-                            {(errors.asunto != null) && (
+                            {(errors.despacho != null) && (
 
-                                <p className="text-red-500">{`${errors.asunto.message}`}</p>
+                                <p className="text-red-500">{`${errors.despacho.message}`}</p>
                             )}
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lugar">
-                                Lugar
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombredespacho">
+                                Nombre Despacho
                             </label>
                             <input
-                                {...register('lugar', {
-                                    required: 'El lugar es requerido',
+                                {...register('nombredespacho', {
+                                    required: 'El nombe de despacho requerido',
                                 })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
-                                id="lugar"
-                                name="lugar"
-                                placeholder="Sala de..."
+                                id="nombredespacho"
+                                name="nombredespacho"
+                                placeholder="ON..."
                             />
-                            {(errors.lugar != null) && (
+                            {(errors.nombredespacho != null) && (
 
-                                <p className="text-red-500">{`${errors.lugar.message}`}</p>
+                                <p className="text-red-500">{`${errors.nombredespacho.message}`}</p>
                             )}
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="convocado">
-                                Convocado por
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="atiende">
+                                Nombre de quien atiende
                             </label>
                             <input
-                                {...register('convocado', {
-                                    required: 'Convocado por es requerido',
+                                {...register('atiende', {
+                                    required: 'Nombre de quien atiende es requerido',
                                 })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 type="text"
-                                id="convocado"
-                                name="convocado"
-                                placeholder="Juan..."
+                                id="atiende"
+                                name="atiende"
+                                placeholder="Yessica..."
                             />
-                            {(errors.convocado != null) && (
+                            {(errors.atiende != null) && (
 
-                                <p className="text-red-500">{`${errors.convocado.message}`}</p>
+                                <p className="text-red-500">{`${errors.atiende.message}`}</p>
+                            )}
+                        </div>
+
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cargo">
+                                Cargo de quien atiende
+                            </label>
+                            <input
+                                {...register('cargo', {
+                                    required: 'Cargo de quien atiende es requerido',
+                                })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                type="text"
+                                id="cargo"
+                                name="cargo"
+                                placeholder="Yessica..."
+                            />
+                            {(errors.cargo != null) && (
+
+                                <p className="text-red-500">{`${errors.cargo.message}`}</p>
                             )}
                         </div>
 
