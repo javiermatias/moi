@@ -1,5 +1,5 @@
 'use client'
-import { Bitacora } from '@/app/lib/definitions';
+import { Bitacora, Participante } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { DateTime } from 'luxon';
@@ -47,6 +47,7 @@ export default function Despacho() {
     } = useForm()
 
     const [loading, setLoading] = useState(false)
+    const [participante, setParticipante] = useState(new Array<Participante>())
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const mutation = useMutation({
@@ -77,7 +78,8 @@ export default function Despacho() {
             id_despacho: getValues('despacho'),
             nombre_despacho: getValues('nombredespacho'),
             nombre_atiende: getValues('atiende'),
-            cargo_atiende: getValues('cargo')
+            cargo_atiende: getValues('cargo'),
+            participantes: participante
         };
         console.log(bitacora);
         mutation.mutate(bitacora)

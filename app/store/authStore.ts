@@ -1,7 +1,7 @@
 import { Session } from "next-auth"
 import { devtools, persist } from 'zustand/middleware'
 import create from 'zustand'
-import { Bitacora } from "../lib/definitions"
+import { Bitacora, Participante } from "../lib/definitions"
 
 interface AuthState {
     session: Session
@@ -57,7 +57,8 @@ export const useBitacoraStore = create<BitacoraState>()(
                     id_despacho: '',
                     nombre_despacho: '',
                     nombre_atiende: '',
-                    cargo_atiende: ''
+                    cargo_atiende: '',
+                    participantes: new Array<Participante>()
                 },
                 setBitacora: (bitacora) => { set({ bitacora }) }, // Update the state with the new incidencia object
 

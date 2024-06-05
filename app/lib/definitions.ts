@@ -14,7 +14,15 @@ export type Bitacora = {
   nombre_despacho: string; //nombre despacho
   nombre_atiende: string; //nombre atiende
   cargo_atiende: string; //cargo de quein atiende
+  participantes: Participante[];
 
+}
+
+
+export type Participante = {
+  id: number;
+  nombre: string;
+  puesto: string;
 }
 export type User = {
   id: string;
