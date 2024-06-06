@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 import { useMutation, QueryClient } from '@tanstack/react-query'
-
+import { toast } from 'react-toastify'
 import { createBitacora } from '@/app/services/bitacora.service';
 import { useBitacoraStore } from '@/app/store/authStore';
 import Badge from '@/app/ui/badge';
@@ -67,8 +67,10 @@ export default function DatosGenerales() {
     }, [bitacora, setValue])
 
     const agregarParticipante = () => {
-        const nombreParticipatnte = getValues('nombreparticipante');
-        const puestoParticipatnte = getValues('puestoparticipante');
+        const nombreParticipante = getValues('nombreparticipante');
+        const puestoParticipante = getValues('puestoparticipante');
+        const newParticipante: Participante = { id: participante.length + 1, nombre: nombreParticipante, puesto: puestoParticipante }
+        setParticipante([...participante, newParticipante])
 
     }
     const onRemove = (id: number) => {
@@ -84,6 +86,10 @@ export default function DatosGenerales() {
     const onSubmit = async (data: FieldValues) => {
         const currentDate = DateTime.local();
 
+        if (participante.length === 0) {
+            toast.error('Tienes que cargar al menos un participante!')
+            return
+        }
 
         // Set the locale to Spanish
         //fecha formato: const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
@@ -344,7 +350,7 @@ export default function DatosGenerales() {
                                         : (
                                             <div className="px-5 py-2 pt">
                                                 {participante.map((part) => (
-                                                    <Badge key={part.nombre} title={part.puesto} onRemove={() => { onRemove(part.id) }} />
+                                                    <Badge key={part.id} title={part.nombre + "-" + part.puesto} onRemove={() => { onRemove(part.id) }} />
                                                 ))}
                                             </div>
                                         )}

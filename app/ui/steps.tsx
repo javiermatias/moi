@@ -10,7 +10,7 @@ export default function Step({ id }: { id: number }) {
     // Define your step data (titles and descriptions)
     const stepsData = [
         { title: 'Datos Generales', description: 'Datos Generales' },
-        { title: 'Datos del Despacho', description: 'Despacho' },
+        { title: 'Indicadores de gestion', description: 'Gestion' },
         { title: 'Participantes', description: 'Participantes' },
         { title: 'Entrevista Indicadores', description: 'Entrevista Indicadores' },
     ];
