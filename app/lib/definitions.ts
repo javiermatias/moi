@@ -15,6 +15,45 @@ export type Bitacora = {
   nombre_atiende: string; //nombre atiende
   cargo_atiende: string; //cargo de quein atiende
   participantes: Participante[];
+  volumen_cartera: string;
+  saldo_cartera: string;
+  cuota_semana: string;
+  plantilla_ideal: string;
+  plantilla_real: string;
+  telefonicos: string;
+  presenciales: string;
+  descansos: string;
+  bajas: string;
+  altas: string;
+  cartera_rmd: string;
+  saldo_cartera_rmd: string;
+  cuota_semana_rmd: string;
+  total_plan_pago: string;
+  vigentes: string;
+  cancelados: string;
+  normalidad: string;
+  cuota_planes: string;
+  avance_planes: string;
+  elaborados: string;
+  compromiso: string;
+  pendientes: string;
+  demandas: string;
+  gestionadas: string;
+  acuses: string;
+  pendientes_ciceron: string;
+  deudores: string;
+  llamada: string;
+  blaster: string;
+  sms: string;
+  whatsapp: string;
+  carta: string;
+  visita: string;
+  otro: string;
+  hallazgos: string[];
+  acciones: Acciones[];
+
+
+
 
 }
 
@@ -24,6 +63,14 @@ export type Participante = {
   nombre: string;
   puesto: string;
 }
+
+export type Acciones = {
+  id: number;
+  descripcion: string;
+  responsable: string;
+  fecha: string;
+}
+
 export type User = {
   id: string;
   nombre: string; //nombreColaborador

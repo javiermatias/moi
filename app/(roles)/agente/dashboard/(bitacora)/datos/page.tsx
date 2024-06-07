@@ -55,14 +55,15 @@ export default function DatosGenerales() {
     })
     useEffect(() => {
 
-        if (bitacora.asunto) setValue('asunto', bitacora.asunto)
-        if (bitacora.nombre) setValue('nombre', bitacora.nombre)
-        if (bitacora.lugar) setValue('lugar', bitacora.lugar)
-        if (bitacora.convocado) setValue('convocado', bitacora.convocado)
-        if (bitacora.id_despacho) setValue('despacho', bitacora.id_despacho)
-        if (bitacora.nombre_despacho) setValue('nombredespacho', bitacora.nombre_despacho)
-        if (bitacora.nombre_atiende) setValue('atiende', bitacora.nombre_atiende)
-        if (bitacora.cargo_atiende) setValue('cargo', bitacora.cargo_atiende)
+        if (bitacora.asunto) setValue('asunto', bitacora.asunto);
+        if (bitacora.nombre) setValue('nombre', bitacora.nombre);
+        if (bitacora.lugar) setValue('lugar', bitacora.lugar);
+        if (bitacora.convocado) setValue('convocado', bitacora.convocado);
+        if (bitacora.id_despacho) setValue('despacho', bitacora.id_despacho);
+        if (bitacora.nombre_despacho) setValue('nombredespacho', bitacora.nombre_despacho);
+        if (bitacora.nombre_atiende) setValue('atiende', bitacora.nombre_atiende);
+        if (bitacora.cargo_atiende) setValue('cargo', bitacora.cargo_atiende);
+        if (bitacora.participantes) setParticipante(bitacora.participantes);
 
     }, [bitacora, setValue])
 
@@ -122,7 +123,7 @@ export default function DatosGenerales() {
               console.log(bitacora);
               await mutation.mutateAsync(bitacora) */
         await mutation.mutateAsync(bitacora)
-        router.push('/agente/dashboard/despacho?id=1')
+        router.push('/agente/dashboard/gestion?id=1')
     }
     return (
         <>
@@ -140,6 +141,7 @@ export default function DatosGenerales() {
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="asunto">
                                     Asunto
                                 </label>
+
                                 <input
                                     {...register('asunto', {
                                         required: 'El asunto es requerido',
@@ -155,6 +157,7 @@ export default function DatosGenerales() {
 
                                     <p className="text-red-500">{`${errors.asunto.message}`}</p>
                                 )}
+
                             </div>
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lugar">

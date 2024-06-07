@@ -10,17 +10,18 @@ export default function Step({ id }: { id: number }) {
     // Define your step data (titles and descriptions)
     const stepsData = [
         { title: 'Datos Generales', description: 'Datos Generales' },
-        { title: 'Indicadores de gestion', description: 'Gestion' },
-        { title: 'Participantes', description: 'Participantes' },
+        { title: 'Gestion', description: 'Gestion' },
+        { title: 'Herramientas', description: 'Herramientas' },
         { title: 'Entrevista Indicadores', description: 'Entrevista Indicadores' },
     ];
     // Calculate the range of steps to display based on the current step
-    const startStep = Math.max(0, step - 1);
-    const endStep = Math.min(stepsData.length - 1, step + 1);
+    //const startStep = Math.max(0, step - 1);
+    //const endStep = Math.min(stepsData.length - 1, step + 1);
+    //stepsData.slice(startStep, endStep + 1).map
     return (
         <div>
             <Steps current={step}>
-                {stepsData.slice(startStep, endStep + 1).map((step, index) => (
+                {stepsData.map((step, index) => (
                     <Steps.Item key={index} title={step.title} description={step.description} />
                 ))}
             </Steps>

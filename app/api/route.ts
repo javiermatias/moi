@@ -26,7 +26,26 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const { asunto, nombre, fecha, lugar, convocado, id_user } = await request.json();
+  const { asunto, nombre, fecha, lugar, convocado, id_user, id_despacho,
+    nombre_despacho, nombre_atiende, cargo_atiende, participantes
+  } = await request.json();
+
+  /* export type Bitacora = {
+    //semana: string;
+    asunto: string;
+    nombre: string; //nombreColaborador
+    fecha: string;
+    lugar: string;
+    convocado: string;//convocadoPor
+    id_user: number; //id usuario
+    id_despacho: string; //id despacho
+    nombre_despacho: string; //nombre despacho
+    nombre_atiende: string; //nombre atiende
+    cargo_atiende: string; //cargo de quein atiende
+    participantes: Participante[];
+  
+  } */
+
 
   console.log(asunto);
   console.log(nombre);
@@ -34,6 +53,11 @@ export async function POST(request: NextRequest) {
   console.log(lugar);
   console.log(convocado);
   console.log(id_user);
+  console.log(id_despacho);
+  console.log(nombre_despacho);
+  console.log(nombre_atiende);
+  console.log(cargo_atiende);
+  console.log(participantes);
 
   return new Response(`Hello, Next.js!`, {
     status: 200

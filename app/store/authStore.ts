@@ -1,7 +1,7 @@
 import { Session } from "next-auth"
 import { devtools, persist } from 'zustand/middleware'
 import create from 'zustand'
-import { Bitacora, Participante } from "../lib/definitions"
+import { Acciones, Bitacora, Participante } from "../lib/definitions"
 
 interface AuthState {
     session: Session
@@ -58,7 +58,43 @@ export const useBitacoraStore = create<BitacoraState>()(
                     nombre_despacho: '',
                     nombre_atiende: '',
                     cargo_atiende: '',
-                    participantes: new Array<Participante>()
+                    participantes: new Array<Participante>(),
+                    volumen_cartera: '',
+                    saldo_cartera: '',
+                    cuota_semana: '',
+                    plantilla_ideal: '',
+                    plantilla_real: '',
+                    telefonicos: '',
+                    presenciales: '',
+                    descansos: '',
+                    bajas: '',
+                    altas: '',
+                    cartera_rmd: '',
+                    saldo_cartera_rmd: '',
+                    cuota_semana_rmd: '',
+                    total_plan_pago: '',
+                    vigentes: '',
+                    cancelados: '',
+                    normalidad: '',
+                    cuota_planes: '',
+                    avance_planes: '',
+                    elaborados: '',
+                    compromiso: '',
+                    pendientes: '',
+                    demandas: '',
+                    gestionadas: '',
+                    acuses: '',
+                    pendientes_ciceron: '',
+                    deudores: '',
+                    llamada: '',
+                    blaster: '',
+                    sms: '',
+                    whatsapp: '',
+                    carta: '',
+                    visita: '',
+                    otro: '',
+                    hallazgos: [],
+                    acciones: new Array<Acciones>(),
                 },
                 setBitacora: (bitacora) => { set({ bitacora }) }, // Update the state with the new incidencia object
 
