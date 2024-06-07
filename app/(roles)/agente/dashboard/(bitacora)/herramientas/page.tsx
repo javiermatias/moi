@@ -1,5 +1,5 @@
 'use client'
-import { Bitacora, Participante } from '@/app/lib/definitions';
+import { Accion, Bitacora } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { DateTime } from 'luxon';
@@ -12,6 +12,7 @@ import { useMutation, QueryClient } from '@tanstack/react-query'
 import { createBitacora } from '@/app/services/bitacora.service';
 import { useBitacoraStore } from '@/app/store/authStore';
 import Badge from '@/app/ui/badge';
+import AccionesTable from '@/app/ui/acciones-table';
 /* export type Bitacora = {
   //semana: string;
   asunto: string;
@@ -50,6 +51,7 @@ export default function Despacho() {
     const [hallazgo, setHallazgo] = useState(new Array<string>())
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
+    const [acciones, setAcciones] = useState(new Array<Accion>());
     const mutation = useMutation({
         mutationFn: createBitacora,
         onSuccess: () => {
@@ -58,6 +60,15 @@ export default function Despacho() {
         },
     })
 
+
+    const agregarAccion = () => {
+        const descripcion = getValues('descripcion');
+        const responsable = getValues('responsable');
+        const fecha = getValues('fecha');
+        const newAccion: Accion = { id: acciones.length + 1, descripcion: descripcion, responsable: responsable, fecha: fecha }
+        setAcciones([...acciones, newAccion])
+
+    }
 
     const agregarHallazago = () => {
         const newHallazgo = getValues('hallazgo');
@@ -341,6 +352,93 @@ export default function Despacho() {
                         </div>
                     </div>
 
+
+                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                        <h5 className="text-xl font-bold mb-2 text-center">Compromisos y acciones a realizar</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">
+                                    Descripcion
+                                </label>
+                                <input
+                                    {...register('descripcion')}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="descripcion"
+                                    name="descripcion"
+                                    placeholder="Juan..."
+                                />
+
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="responsable">
+                                    Responsable
+                                </label>
+                                <input
+                                    {...register('responsable')}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="responsable"
+                                    name="responsable"
+                                    placeholder="..."
+                                />
+
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
+                                    Fecha planeada
+                                </label>
+                                <input
+                                    {...register('fecha')}
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="fecha"
+                                    name="fecha"
+                                    placeholder="..."
+                                />
+
+                            </div>
+
+
+                            <button
+                                className="w-full bg-green-500 text-white text-xs font-bold py-2 px-3 rounded-md hover:bg-green-600 transition duration-300"
+                                onClick={() => agregarAccion()}
+                                type="button"
+
+                            >
+                                Agregar Accion
+                            </button>
+
+
+
+                        </div>
+
+                        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+
+                            <div >
+                                {acciones.length === 0
+                                    ? (
+                                        <p className="px-5 py-2 pt">No hay Acciones agregados</p>
+                                    )
+                                    : (
+                                        <div >
+
+                                            <AccionesTable acciones={acciones} />
+
+                                        </div>
+                                    )}
+                            </div>
+                            {/*  <div
+                                className="w-full overflow-y-auto border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                style={{ maxHeight: '400px' }}
+                            >
+                              
+
+                            </div> */}
+                        </div>
+                    </div>
 
 
 

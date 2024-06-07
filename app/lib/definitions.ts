@@ -50,7 +50,7 @@ export type Bitacora = {
   visita: string;
   otro: string;
   hallazgos: string[];
-  acciones: Acciones[];
+  acciones: Accion[];
 
 
 
@@ -64,7 +64,7 @@ export type Participante = {
   puesto: string;
 }
 
-export type Acciones = {
+export type Accion = {
   id: number;
   descripcion: string;
   responsable: string;
