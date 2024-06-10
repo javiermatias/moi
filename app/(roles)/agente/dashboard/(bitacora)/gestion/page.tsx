@@ -1,92 +1,91 @@
 'use client'
-import { Bitacora, Participante } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
-import { DateTime } from 'luxon';
-import { useSession } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
-import { useMutation, QueryClient } from '@tanstack/react-query'
-
-import { createBitacora } from '@/app/services/bitacora.service';
 import { useBitacoraStore } from '@/app/store/authStore';
-/* export type Bitacora = {
-  //semana: string;
-  asunto: string;
-  nombre: string; //nombreColaborador
-  fecha: string;
-  lugar: string;
-  convocado: string;//convocadoPor
-  id_user: number; //id usuario
-  id_despacho: string; //id despacho
-  nombre_despacho: string; //nombre despacho
-  nombre_atiende: string; //nombre atiende
-  cargo_atiende: string; //cargo de quein atiende
-
-}*/
-
 
 export default function Despacho() {
-    /*   console.log('Client Side Rendering')
-  const { data: session } = useSession() // useSession()
- 
-  useEffect(() => {
-    console.log(session); // console.log
-  }, [session]) */
-    const { data: session } = useSession()
-    let user: any = { ...session?.user }
-    const queryClient = new QueryClient()
+
     const { bitacora, setBitacora } = useBitacoraStore()
     const {
         register,
         handleSubmit,
         formState: { errors },
-        getValues
+        getValues,
+        setValue
     } = useForm()
 
     const [loading, setLoading] = useState(false)
-    const [participante, setParticipante] = useState(new Array<Participante>())
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
-    const mutation = useMutation({
-        mutationFn: createBitacora,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ['bitacora'] })
-        },
-    })
+    const router = useRouter()
+
+    useEffect(() => {
+
+        if (bitacora.volumen_cartera) setValue('volumen_cartera', bitacora.volumen_cartera);
+        if (bitacora.saldo_cartera) setValue('saldo_cartera', bitacora.saldo_cartera);
+        if (bitacora.cuota_semana) setValue('cuota_semana', bitacora.cuota_semana);
+        if (bitacora.plantilla_ideal) setValue('plantilla_ideal', bitacora.plantilla_ideal);
+        if (bitacora.plantilla_real) setValue('plantilla_real', bitacora.plantilla_real);
+        if (bitacora.telefonicos) setValue('telefonicos', bitacora.telefonicos);
+        if (bitacora.presenciales) setValue('presenciales', bitacora.presenciales);
+        if (bitacora.descansos) setValue('descansos', bitacora.descansos);
+        if (bitacora.bajas) setValue('bajas', bitacora.bajas);
+        if (bitacora.altas) setValue('altas', bitacora.altas);
+        if (bitacora.cartera_rmd) setValue('cartera_rmd', bitacora.cartera_rmd);
+        if (bitacora.saldo_cartera_rmd) setValue('saldo_cartera_rmd', bitacora.saldo_cartera_rmd);
+        if (bitacora.cuota_semana_rmd) setValue('cuota_semana_rmd', bitacora.cuota_semana_rmd);
+        if (bitacora.total_plan_pago) setValue('total_plan_pago', bitacora.total_plan_pago);
+        if (bitacora.vigentes) setValue('vigentes', bitacora.vigentes);
+        if (bitacora.cancelados) setValue('cancelados', bitacora.cancelados);
+        if (bitacora.normalidad) setValue('normalidad', bitacora.normalidad);
+        if (bitacora.cuota_planes) setValue('cuota_planes', bitacora.cuota_planes);
+        if (bitacora.avance_planes) setValue('avance_planes', bitacora.avance_planes);
+        if (bitacora.elaborados) setValue('elaborados', bitacora.elaborados);
+        if (bitacora.compromiso) setValue('compromiso', bitacora.compromiso);
+        if (bitacora.pendientes) setValue('pendientes', bitacora.pendientes);
+        if (bitacora.demandas) setValue('demandas', bitacora.demandas);
+        if (bitacora.gestionadas) setValue('gestionadas', bitacora.gestionadas);
+        if (bitacora.acuses) setValue('acuses', bitacora.acuses);
+        if (bitacora.pendientes_ciceron) setValue('pendientes_ciceron', bitacora.pendientes_ciceron);
+
+    }, [bitacora, setValue])
 
     const onSubmit = async (data: FieldValues) => {
-        const currentDate = DateTime.local();
 
-
-        // Set the locale to Spanish
-        //fecha formato: const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
-        //semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
-        //hora: const spanishHour = currentDate.setLocale("es").toFormat("hh:mm a");
-
-        const new_bitacora: Bitacora = {
+        setBitacora({
             ...bitacora,
-            asunto: getValues('asunto'),
-            nombre: user?.nombre,
-            fecha: currentDate.toString(),
-            lugar: getValues('lugar'),
-            convocado: getValues('convocado'),
-            id_user: Number.parseInt(user?.id || '0'), // Your id usuario value
-            id_despacho: getValues('despacho'),
-            nombre_despacho: getValues('nombredespacho'),
-            nombre_atiende: getValues('atiende'),
-            cargo_atiende: getValues('cargo'),
-            participantes: participante
-        };
-        console.log(new_bitacora);
-        mutation.mutate(new_bitacora)
-        /* 
-                volumen_cartera: '',
-                saldo_cartera: '',
-                cuota_semana: ''
-         */
+            volumen_cartera: getValues('volumen_cartera'),
+            saldo_cartera: getValues('saldo_cartera'),
+            cuota_semana: getValues('cuota_semana'),
+            plantilla_ideal: getValues('plantilla_ideal'),
+            plantilla_real: getValues('plantilla_real'),
+            telefonicos: getValues('telefonicos'),
+            presenciales: getValues('presenciales'),
+            descansos: getValues('descansos'),
+            bajas: getValues('bajas'),
+            altas: getValues('altas'),
+            cartera_rmd: getValues('cartera_rmd'),
+            saldo_cartera_rmd: getValues('saldo_cartera_rmd'),
+            cuota_semana_rmd: getValues('cuota_semana_rmd'),
+            total_plan_pago: getValues('total_plan_pago'),
+            vigentes: getValues('vigentes'),
+            cancelados: getValues('cancelados'),
+            normalidad: getValues('normalidad'),
+            cuota_planes: getValues('cuota_planes'),
+            avance_planes: getValues('avance_planes'),
+            elaborados: getValues('elaborados'),
+            compromiso: getValues('compromiso'),
+            pendientes: getValues('pendientes'),
+            demandas: getValues('demandas'),
+            gestionadas: getValues('gestionadas'),
+            acuses: getValues('acuses'),
+            pendientes_ciceron: getValues('pendientes_ciceron')
+        })
+
+        router.push('/agente/dashboard/herramientas?id=2')
 
     }
     return (
@@ -572,11 +571,6 @@ export default function Despacho() {
                         </div>
                     </div>
 
-
-                    {/* demandas: '',
-                    gestionadas: '',
-                    acuses: '',
-                    pendientes_ciceron: '' */}
 
                     <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
                         <h5 className="text-xl font-bold mb-2 text-center">Cicerón</h5>

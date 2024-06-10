@@ -111,17 +111,7 @@ export default function DatosGenerales() {
             participantes: participante
         })
 
-        /*       const bitacora: Bitacora = {
-      
-                  asunto: getValues('asunto'),
-                  nombre: user?.nombre,
-                  fecha: currentDate.toString(),
-                  lugar: getValues('lugar'),
-                  convocado: getValues('convocado'),
-                  id_user: Number.parseInt(user?.id || '0'), // Your id usuario value
-              };
-              console.log(bitacora);
-              await mutation.mutateAsync(bitacora) */
+
         await mutation.mutateAsync(bitacora)
         router.push('/agente/dashboard/gestion?id=1')
     }

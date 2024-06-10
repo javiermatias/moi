@@ -5,46 +5,21 @@ import Step from '@/app/ui/steps';
 import { DateTime } from 'luxon';
 import { useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
-import { useMutation, QueryClient } from '@tanstack/react-query'
-
-import { createBitacora } from '@/app/services/bitacora.service';
 import { useBitacoraStore } from '@/app/store/authStore';
-import Badge from '@/app/ui/badge';
-import AccionesTable from '@/app/ui/acciones-table';
-/* export type Bitacora = {
-  //semana: string;
-  asunto: string;
-  nombre: string; //nombreColaborador
-  fecha: string;
-  lugar: string;
-  convocado: string;//convocadoPor
-  id_user: number; //id usuario
-  id_despacho: string; //id despacho
-  nombre_despacho: string; //nombre despacho
-  nombre_atiende: string; //nombre atiende
-  cargo_atiende: string; //cargo de quein atiende
 
-}*/
 
 
 export default function Despacho() {
-    /*   console.log('Client Side Rendering')
-  const { data: session } = useSession() // useSession()
- 
-  useEffect(() => {
-    console.log(session); // console.log
-  }, [session]) */
-    const { data: session } = useSession()
-    let user: any = { ...session?.user }
-    const queryClient = new QueryClient()
+
     const { bitacora, setBitacora } = useBitacoraStore()
     const {
         register,
         handleSubmit,
         formState: { errors },
-        getValues
+        getValues,
+        setValue
     } = useForm()
 
     const [loading, setLoading] = useState(false)
@@ -52,13 +27,36 @@ export default function Despacho() {
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const [acciones, setAcciones] = useState(new Array<Accion>());
-    const mutation = useMutation({
-        mutationFn: createBitacora,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ['bitacora'] })
-        },
-    })
+
+
+    useEffect(() => {
+
+
+        if (bitacora.deudores) setValue('deudores', bitacora.deudores);
+        if (bitacora.llamada) setValue('llamada', bitacora.llamada);
+        if (bitacora.blaster) setValue('blaster', bitacora.blaster);
+        if (bitacora.sms) setValue('sms', bitacora.sms);
+        if (bitacora.whatsapp) setValue('whatsapp', bitacora.whatsapp);
+        if (bitacora.carta) setValue('carta', bitacora.carta);
+        if (bitacora.visita) setValue('visita', bitacora.visita);
+        if (bitacora.otro) setValue('otro', bitacora.otro);
+        if (bitacora.hallazgos) setValue('otro', bitacora.otro);
+        if (bitacora.acciones) setAcciones(bitacora.acciones);
+        if (bitacora.hallazgos) setHallazgo(bitacora.hallazgos);
+
+    }, [bitacora, setValue])
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     const agregarAccion = () => {
@@ -77,36 +75,28 @@ export default function Despacho() {
 
     }
 
-    const onRemove = (name: string) => {
+    const removeHallazgo = (name: string) => {
         // Filter out the badge with the specified id
-        const updatedParticipante = hallazgo.filter(badge => badge !== name)
+        const updatedHallazgo = hallazgo.filter(badge => badge !== name)
 
         // Update the state with the filtered badges array
-        setHallazgo(updatedParticipante)
+        setHallazgo(updatedHallazgo)
+
+        // console.log("Se borró el número con id " + id);
+    }
+
+    const onRemove = (id: number) => {
+        // Filter out the badge with the specified id
+        const updatedAcciones = acciones.filter(accion => accion.id !== id)
+
+        // Update the state with the filtered badges array
+        setAcciones(updatedAcciones)
 
         // console.log("Se borró el número con id " + id);
     }
     const onSubmit = async (data: FieldValues) => {
-        const currentDate = DateTime.local();
 
-
-        // Set the locale to Spanish
-        //fecha formato: const spanishDate = currentDate.setLocale("es").toFormat("dd 'de' MMMM 'de' yyyy");
-        //semana: "Dia" + DateTime.now().day + "-S" + DateTime.now().weekNumber,
-        //hora: const spanishHour = currentDate.setLocale("es").toFormat("hh:mm a");
-
-        /* 
-             deudores: '',
-              llamada: '',
-              blaster: '',
-              sms: '',
-              whatsapp: '',
-              carta: '',
-              visita: '',
-              otro: ''
-   */
-
-        const new_bitacora: Bitacora = {
+        setBitacora({
             ...bitacora,
             deudores: getValues('deudores'),
             llamada: getValues('llamada'),
@@ -116,10 +106,10 @@ export default function Despacho() {
             carta: getValues('carta'),
             visita: getValues('visita'),
             otro: getValues('otro'),
-            hallazgos: hallazgo
-        };
-        //console.log(new_bitacora);
-        mutation.mutate(new_bitacora)
+            hallazgos: hallazgo,
+            acciones: acciones
+        })
+
 
 
     }
@@ -330,26 +320,46 @@ export default function Despacho() {
 
                         <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
 
-                            <div
-                                className="w-full overflow-y-auto border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                style={{ maxHeight: '400px' }}
-                            >
-                                <div className={`px-5 py-2 pt`}>
-                                    {hallazgo.length === 0
-                                        ? (
-                                            <p className="px-5 py-2 pt">No hay hallazgos agregados</p>
-                                        )
-                                        : (
-                                            <div className="px-5 py-2 pt">
-                                                {hallazgo.map((part, index) => (
-                                                    <Badge key={index} title={part} onRemove={() => { onRemove(part) }} />
-                                                ))}
-                                            </div>
-                                        )}
-                                </div>
+                            <div >
+                                {hallazgo.length === 0
+                                    ? (
+                                        <p className="px-5 py-2 pt">No hay Hallazgos agregados</p>
+                                    )
+                                    : (
+                                        <div >
 
+                                            <table className="w-full border divide-y divide-gray-200">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 py-2">Nombre</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {hallazgo.map((ph, index) => (
+                                                        <tr key={index}>
+                                                            <td className="px-4 py-2">{ph}</td>
+                                                            <td>
+                                                                <button onClick={() => removeHallazgo(ph)} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                                                    <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                    </svg>
+                                                                    <span className="sr-only">Eliminar</span>
+                                                                </button>
+                                                            </td>
+
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    )}
                             </div>
+
                         </div>
+
+
                     </div>
 
 
@@ -401,16 +411,20 @@ export default function Despacho() {
 
                             </div>
 
+                            <div className="mb-4">
+                                <label className="max-sm:hidden block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
+                                    Agregar
+                                </label>
 
-                            <button
-                                className="w-full bg-green-500 text-white text-xs font-bold py-2 px-3 rounded-md hover:bg-green-600 transition duration-300"
-                                onClick={() => agregarAccion()}
-                                type="button"
+                                <button
+                                    className="w-full px-3 py-2 bg-green-500 text-white text-xs font-bold  rounded-md hover:bg-green-600 transition duration-300"
+                                    onClick={() => agregarAccion()}
+                                    type="button"
 
-                            >
-                                Agregar Accion
-                            </button>
-
+                                >
+                                    Agregar Accion
+                                </button>
+                            </div>
 
 
                         </div>
@@ -425,18 +439,38 @@ export default function Despacho() {
                                     : (
                                         <div >
 
-                                            <AccionesTable acciones={acciones} />
+                                            <table className="w-full border divide-y divide-gray-200">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-4 py-2">Descripcion</th>
+                                                        <th className="px-4 py-2">Responsable</th>
+                                                        <th className="px-4 py-2">Fecha</th>
+                                                        {/* Add more columns as needed */}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {acciones.map((accion) => (
+                                                        <tr key={accion.id}>
+                                                            <td className="px-4 py-2">{accion.descripcion}</td>
+                                                            <td className="px-4 py-2">{accion.responsable}</td>
+                                                            <td className="px-4 py-2">{accion.fecha}</td>
+                                                            <td>
+                                                                <button onClick={() => onRemove(accion.id)} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                                                    <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                    </svg>
+                                                                    <span className="sr-only">Eliminar</span>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
 
                                         </div>
                                     )}
                             </div>
-                            {/*  <div
-                                className="w-full overflow-y-auto border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                style={{ maxHeight: '400px' }}
-                            >
-                              
 
-                            </div> */}
                         </div>
                     </div>
 
