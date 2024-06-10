@@ -123,7 +123,7 @@ export default function DatosGenerales() {
                 <hr />
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 ">
                         <h5 className="text-xl font-bold mb-2 text-center">Datos Generales</h5>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
 

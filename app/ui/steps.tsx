@@ -11,8 +11,8 @@ export default function Step({ id }: { id: number }) {
     const stepsData = [
         { title: 'Datos Generales', description: 'Datos Generales' },
         { title: 'Gestion', description: 'Gestion' },
-        { title: 'Herramientas', description: 'Herramientas' },
-        { title: 'Entrevista Indicadores', description: 'Entrevista Indicadores' },
+        /*     { title: 'Herramientas', description: 'Herramientas' },
+            { title: 'Entrevista Indicadores', description: 'Entrevista Indicadores' }, */
     ];
     // Calculate the range of steps to display based on the current step
     //const startStep = Math.max(0, step - 1);
