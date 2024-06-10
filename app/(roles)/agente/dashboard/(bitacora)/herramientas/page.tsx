@@ -1,10 +1,8 @@
 'use client'
-import { Accion, Bitacora } from '@/app/lib/definitions';
+import { Accion } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
-import { DateTime } from 'luxon';
-import { useSession } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 import { useBitacoraStore } from '@/app/store/authStore';
@@ -27,7 +25,7 @@ export default function Despacho() {
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const [acciones, setAcciones] = useState(new Array<Accion>());
-
+    const router = useRouter()
 
     useEffect(() => {
 
@@ -45,18 +43,6 @@ export default function Despacho() {
         if (bitacora.hallazgos) setHallazgo(bitacora.hallazgos);
 
     }, [bitacora, setValue])
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     const agregarAccion = () => {
@@ -110,6 +96,7 @@ export default function Despacho() {
             acciones: acciones
         })
 
+        router.push('/agente/dashboard/anexo?id=3')
 
 
     }
