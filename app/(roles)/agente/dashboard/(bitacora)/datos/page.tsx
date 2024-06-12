@@ -121,11 +121,11 @@ export default function DatosGenerales() {
             <div className="w-full container mx-auto py-8">
                 <Step id={numbStep}></Step>
                 <hr />
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-0 md:p-8 rounded-md shadow-md">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-md shadow-md">
 
-                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-0 md:p-6">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Datos Generales</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-0 md:p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="asunto">
@@ -194,9 +194,9 @@ export default function DatosGenerales() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-0 md:p-6">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Datos Despacho</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-0 md:p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="despacho">
@@ -282,9 +282,9 @@ export default function DatosGenerales() {
 
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Participantes Reunion</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombreparticipante">
@@ -333,7 +333,7 @@ export default function DatosGenerales() {
 
                             <div
                                 className="w-full overflow-y-auto border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                style={{ maxHeight: '400px' }}
+
                             >
                                 <div className={`px-5 py-2 pt`}>
                                     {participante.length === 0

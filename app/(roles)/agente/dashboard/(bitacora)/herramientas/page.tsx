@@ -106,11 +106,11 @@ export default function Despacho() {
             <div className="container mx-auto py-8">
                 <Step id={numbStep}></Step>
                 <hr />
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-md shadow-md">
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Herramientas de gestión</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
 
                             <div className="mb-4">
@@ -272,9 +272,9 @@ export default function Despacho() {
 
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Hallazgos</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="hallazgo">
@@ -291,21 +291,24 @@ export default function Despacho() {
 
                             </div>
 
+                            <div className="mb-4">
+                                <label className="max-sm:hidden block text-gray-700 text-sm font-bold mb-2" htmlFor="hallazgo">
+                                    Agregar
+                                </label>
+                                <button
+                                    className="w-full bg-green-500 text-white text-xs font-bold py-2 px-3 rounded-md hover:bg-green-600 transition duration-300"
+                                    onClick={() => agregarHallazago()}
+                                    type="button"
 
-                            <button
-                                className="w-full bg-green-500 text-white text-xs font-bold py-2 px-3 rounded-md hover:bg-green-600 transition duration-300"
-                                onClick={() => agregarHallazago()}
-                                type="button"
-
-                            >
-                                Agregar Hallazgo
-                            </button>
-
+                                >
+                                    Agregar Hallazgo
+                                </button>
+                            </div>
 
 
                         </div>
 
-                        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+                        <div className="w-full max-w-sm mx-auto bg-white p-4 rounded-md shadow-md">
 
                             <div >
                                 {hallazgo.length === 0
@@ -350,9 +353,9 @@ export default function Despacho() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Compromisos y acciones a realizar</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">

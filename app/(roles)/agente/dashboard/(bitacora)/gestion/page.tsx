@@ -94,11 +94,11 @@ export default function Despacho() {
             <div className="container mx-auto py-8">
                 <Step id={numbStep}></Step>
                 <hr />
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-8 rounded-md shadow-md">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-md shadow-md">
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Indicadores de gestión</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
 
                             <div className="mb-4">
@@ -164,9 +164,9 @@ export default function Despacho() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Plantilla Actual</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="plantilla_ideal">
@@ -310,9 +310,9 @@ export default function Despacho() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Apartado RMD</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cartera_rmd">
@@ -377,9 +377,9 @@ export default function Despacho() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Planes de pago</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="total_plan_pago">
@@ -505,9 +505,9 @@ export default function Despacho() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Pagares</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="elaborados">
@@ -572,9 +572,9 @@ export default function Despacho() {
                     </div>
 
 
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
                         <h5 className="text-xl font-bold mb-2 text-center">Cicerón</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="demandas">
