@@ -51,11 +51,17 @@ export type Bitacora = {
   otro: string;
   hallazgos: string[];
   acciones: Accion[];
-
-
-
+  segmentos: Segmento[];
 
 }
+
+export type Segmento = {
+  segmento: string;
+  indicador: string;
+  eficiencia: string;
+}
+
+
 
 
 export type Participante = {

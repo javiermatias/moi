@@ -465,8 +465,137 @@ export default function Despacho() {
                     </div>
 
 
+                    <div className="bg-white rounded-lg shadow-md mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Herramientas de gestión</h5>
+                        <p className="text-sm">
+                            <strong>Mayor o igual 100%</strong>. Goteo del segmento donde se logró EPR. (cabe mencionar que en segmento temprano debe considerarse volumen de cartera mayor a 1000 deudores.)
+                        </p>
+                        <p className="text-sm">
+                            <strong>90 - 100%</strong>. Se mantiene Cartera (no se realiza movimiento, a Favor o En contra) pérdida de cartera por pase Natural, solo a petición o estrategia de dirección.
+                        </p>
+                        <p className="text-sm">
+                            <strong>80 - 89.99%</strong>. Retiro parcial de portafolio. (Importante que cada lunes de semana envíen archivos de abanderamiento para no afectar en el retiro de deudores con negociación.) entiéndase como abanderamiento planes de pago, recurrentes, promesas de pago especificando fecha.
+                        </p>
+                        <p className="text-sm">
+                            <strong>Menor de 79.99%</strong>. Se puede considerar el retiro Total de portafolio, despacho en Evaluación de proyecto.
+                        </p>
+                    </div>
 
-
+                    <table className="min-w-full bg-white border border-gray-200 mt-6 mb-6">
+                        <thead>
+                            <tr>
+                                <th className="py-2 px-4 border-b border-gray-200">Cuota segmento Semana 20</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Indicador EPR</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Eficiencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('segmento5', {
+                                        required: 'Segmento 5 es requerido',
+                                    })} id="segmento5" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 5" />
+                                    {(errors.segmento5 != null) && (
+                                        <p className="text-red-500">{`${errors.segmento5.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('cuota5', {
+                                        required: 'Cuota es requerida',
+                                    })} id="cuota5" type="text" className="w-full border rounded px-2 py-1" placeholder="$210" />
+                                    {(errors.cuota5 != null) && (
+                                        <p className="text-red-500">{`${errors.cuota5.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('eficiencia5', {
+                                        required: 'Eficiencia es requerida',
+                                    })} id="eficiencia5" type="text" className="w-full border rounded px-2 py-1" placeholder=".90%" />
+                                    {(errors.eficiencia5 != null) && (
+                                        <p className="text-red-500">{`${errors.eficiencia5.message}`}</p>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('segmento28', {
+                                        required: 'Segmento 28 es requerido',
+                                    })} id="segmento28" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 28" />
+                                    {(errors.segmento28 != null) && (
+                                        <p className="text-red-500">{`${errors.segmento28.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('cuota28', {
+                                        required: 'Cuota es requerida',
+                                    })} id="cuota28" type="text" className="w-full border rounded px-2 py-1" placeholder="$50" />
+                                    {(errors.cuota28 != null) && (
+                                        <p className="text-red-500">{`${errors.cuota28.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('eficiencia28', {
+                                        required: 'Eficiencia es requerida',
+                                    })} id="eficiencia28" type="text" className="w-full border rounded px-2 py-1" placeholder=".21%" />
+                                    {(errors.eficiencia28 != null) && (
+                                        <p className="text-red-500">{`${errors.eficiencia28.message}`}</p>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('segmento6', {
+                                        required: 'Segmento 6 es requerido',
+                                    })} id="segmento6" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 6" />
+                                    {(errors.segmento6 != null) && (
+                                        <p className="text-red-500">{`${errors.segmento6.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('cuota6', {
+                                        required: 'Cuota es requerida',
+                                    })} id="cuota6" type="text" className="w-full border rounded px-2 py-1" placeholder="$34" />
+                                    {(errors.cuota6 != null) && (
+                                        <p className="text-red-500">{`${errors.cuota6.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('eficiencia6', {
+                                        required: 'Eficiencia es requerida',
+                                    })} id="eficiencia6" type="text" className="w-full border rounded px-2 py-1" placeholder=".15%" />
+                                    {(errors.eficiencia6 != null) && (
+                                        <p className="text-red-500">{`${errors.eficiencia6.message}`}</p>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('segmento16', {
+                                        required: 'Segmento 16 es requerido',
+                                    })} id="segmento16" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 16" />
+                                    {(errors.segmento16 != null) && (
+                                        <p className="text-red-500">{`${errors.segmento16.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('cuota16', {
+                                        required: 'Cuota es requerida',
+                                    })} id="cuota16" type="text" className="w-full border rounded px-2 py-1" placeholder="$7" />
+                                    {(errors.cuota16 != null) && (
+                                        <p className="text-red-500">{`${errors.cuota16.message}`}</p>
+                                    )}
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input {...register('eficiencia16', {
+                                        required: 'Eficiencia es requerida',
+                                    })} id="eficiencia16" type="text" className="w-full border rounded px-2 py-1" placeholder=".004%" />
+                                    {(errors.eficiencia16 != null) && (
+                                        <p className="text-red-500">{`${errors.eficiencia16.message}`}</p>
+                                    )}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
 
