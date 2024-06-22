@@ -109,7 +109,7 @@ export default function Despacho() {
                                     {...register('volumen_cartera', {
                                         required: 'El volumen de cartera es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="volumen_cartera"
                                     name="volumen_cartera"
@@ -128,7 +128,7 @@ export default function Despacho() {
                                     {...register('saldo_cartera', {
                                         required: 'El saldo de cartera es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="saldo_cartera"
                                     name="saldo_cartera"
@@ -148,7 +148,7 @@ export default function Despacho() {
                                     {...register('cuota_semana', {
                                         required: 'La cuota de la semana es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cuota_semana"
                                     name="cuota_semana"
@@ -176,7 +176,7 @@ export default function Despacho() {
                                     {...register('plantilla_ideal', {
                                         required: 'La plantilla ideal es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="plantilla_ideal"
                                     name="plantilla_ideal"
@@ -195,7 +195,7 @@ export default function Despacho() {
                                     {...register('plantilla_real', {
                                         required: 'La plantilla real es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="plantilla_real"
                                     name="plantilla_real"
@@ -215,7 +215,7 @@ export default function Despacho() {
                                     {...register('telefonicos', {
                                         required: 'Telefonicos es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="telefonicos"
                                     name="telefonicos"
@@ -235,7 +235,7 @@ export default function Despacho() {
                                     {...register('presenciales', {
                                         required: 'Presenciales es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="presenciales"
                                     name="presenciales"
@@ -254,7 +254,7 @@ export default function Despacho() {
                                     {...register('descansos', {
                                         required: 'Descansos es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md  text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="descansos"
                                     name="descansos"
@@ -274,7 +274,7 @@ export default function Despacho() {
                                     {...register('bajas', {
                                         required: 'Bajas es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="bajas"
                                     name="bajas"
@@ -294,7 +294,7 @@ export default function Despacho() {
                                     {...register('altas', {
                                         required: 'Altas es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="altas"
                                     name="altas"
@@ -322,7 +322,7 @@ export default function Despacho() {
                                     {...register('cartera_rmd', {
                                         required: 'La cartera RMD es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cartera_rmd"
                                     name="cartera_rmd"
@@ -341,7 +341,7 @@ export default function Despacho() {
                                     {...register('saldo_cartera_rmd', {
                                         required: 'El saldo de la cartera es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="saldo_cartera_rmd"
                                     name="saldo_cartera_rmd"
@@ -361,7 +361,7 @@ export default function Despacho() {
                                     {...register('cuota_semana_rmd', {
                                         required: 'La cuota de la semana es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cuota_semana_rmd"
                                     name="cuota_semana_rmd"
@@ -389,7 +389,7 @@ export default function Despacho() {
                                     {...register('total_plan_pago', {
                                         required: 'Total Planes de pago es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="total_plan_pago"
                                     name="total_plan_pago"
@@ -408,7 +408,7 @@ export default function Despacho() {
                                     {...register('vigentes', {
                                         required: 'Vigentes es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="vigentes"
                                     name="vigentes"
@@ -428,7 +428,7 @@ export default function Despacho() {
                                     {...register('cancelados', {
                                         required: 'Cancelados es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cancelados"
                                     name="cancelados"
@@ -448,7 +448,7 @@ export default function Despacho() {
                                     {...register('normalidad', {
                                         required: 'Normalidad es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="normalidad"
                                     name="normalidad"
@@ -468,7 +468,7 @@ export default function Despacho() {
                                     {...register('cuota_planes', {
                                         required: 'Cuota planes es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cuota_planes"
                                     name="cuota_planes"
@@ -488,7 +488,7 @@ export default function Despacho() {
                                     {...register('avance_planes', {
                                         required: 'Avance Plan es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="avance_planes"
                                     name="avance_planes"
@@ -517,7 +517,7 @@ export default function Despacho() {
                                     {...register('elaborados', {
                                         required: 'Elaborados es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="elaborados"
                                     name="elaborados"
@@ -536,7 +536,7 @@ export default function Despacho() {
                                     {...register('compromiso', {
                                         required: 'Compromiso es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="compromiso"
                                     name="compromiso"
@@ -556,7 +556,7 @@ export default function Despacho() {
                                     {...register('pendientes', {
                                         required: 'Pendientes es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="pendientes"
                                     name="pendientes"
@@ -584,7 +584,7 @@ export default function Despacho() {
                                     {...register('demandas', {
                                         required: 'Demandas es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="demandas"
                                     name="demandas"
@@ -603,7 +603,7 @@ export default function Despacho() {
                                     {...register('gestionadas', {
                                         required: 'Gestionadas es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="gestionadas"
                                     name="gestionadas"
@@ -623,7 +623,7 @@ export default function Despacho() {
                                     {...register('acuses', {
                                         required: 'Acuses es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="acuses"
                                     name="acuses"
@@ -643,7 +643,7 @@ export default function Despacho() {
                                     {...register('pendientes_ciceron', {
                                         required: 'Pendientes es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="pendientes_ciceron"
                                     name="pendientes_ciceron"

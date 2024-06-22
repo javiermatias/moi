@@ -136,7 +136,7 @@ export default function DatosGenerales() {
                                     {...register('asunto', {
                                         required: 'El asunto es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="asunto"
                                     name="asunto"
@@ -157,7 +157,7 @@ export default function DatosGenerales() {
                                     {...register('lugar', {
                                         required: 'El lugar es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="lugar"
                                     name="lugar"
@@ -177,7 +177,7 @@ export default function DatosGenerales() {
                                     {...register('convocado', {
                                         required: 'Convocado por es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="convocado"
                                     name="convocado"
@@ -206,7 +206,7 @@ export default function DatosGenerales() {
                                     {...register('despacho', {
                                         required: 'El el id de despacho es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md  text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="despacho"
                                     name="despacho"
@@ -225,7 +225,7 @@ export default function DatosGenerales() {
                                     {...register('nombredespacho', {
                                         required: 'El nombe de despacho requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="nombredespacho"
                                     name="nombredespacho"
@@ -245,7 +245,7 @@ export default function DatosGenerales() {
                                     {...register('atiende', {
                                         required: 'Nombre de quien atiende es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="atiende"
                                     name="atiende"
@@ -265,7 +265,7 @@ export default function DatosGenerales() {
                                     {...register('cargo', {
                                         required: 'Cargo de quien atiende es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="cargo"
                                     name="cargo"
@@ -292,7 +292,7 @@ export default function DatosGenerales() {
                                 </label>
                                 <input
                                     {...register('nombreparticipante')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="nombreparticipante"
                                     name="nombreparticipante"
@@ -306,7 +306,7 @@ export default function DatosGenerales() {
                                 </label>
                                 <input
                                     {...register('puestoparticipante')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="puestoparticipante"
                                     name="puestoparticipante"

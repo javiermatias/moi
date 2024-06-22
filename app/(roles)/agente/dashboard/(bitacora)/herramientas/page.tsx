@@ -121,7 +121,7 @@ export default function Despacho() {
                                     {...register('deudores', {
                                         required: 'Deudores es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="deudores"
                                     name="deudores"
@@ -140,7 +140,7 @@ export default function Despacho() {
                                     {...register('llamada', {
                                         required: 'Llamada es requerido',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="llamada"
                                     name="llamada"
@@ -160,7 +160,7 @@ export default function Despacho() {
                                     {...register('blaster', {
                                         required: 'Blaster es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="blaster"
                                     name="blaster"
@@ -180,7 +180,7 @@ export default function Despacho() {
                                     {...register('sms', {
                                         required: 'SMS es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="sms"
                                     name="sms"
@@ -200,7 +200,7 @@ export default function Despacho() {
                                     {...register('whatsapp', {
                                         required: 'Whatsapp es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="whatsapp"
                                     name="whatsapp"
@@ -220,7 +220,7 @@ export default function Despacho() {
                                     {...register('carta', {
                                         required: 'Carta es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="carta"
                                     name="carta"
@@ -240,7 +240,7 @@ export default function Despacho() {
                                     {...register('visita', {
                                         required: 'Visita es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="visita"
                                     name="visita"
@@ -258,7 +258,7 @@ export default function Despacho() {
                                 </label>
                                 <input
                                     {...register('otro')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="otro"
                                     name="otro"
@@ -282,7 +282,7 @@ export default function Despacho() {
                                 </label>
                                 <input
                                     {...register('hallazgo')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="hallazgo"
                                     name="hallazgo"
@@ -363,7 +363,7 @@ export default function Despacho() {
                                 </label>
                                 <input
                                     {...register('descripcion')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="descripcion"
                                     name="descripcion"
@@ -377,7 +377,7 @@ export default function Despacho() {
                                 </label>
                                 <input
                                     {...register('responsable')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="responsable"
                                     name="responsable"
@@ -392,7 +392,7 @@ export default function Despacho() {
                                 </label>
                                 <input
                                     {...register('fecha')}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="fecha"
                                     name="fecha"
@@ -484,7 +484,7 @@ export default function Despacho() {
                     <table className="min-w-full bg-white border border-gray-200 mt-6 mb-6">
                         <thead>
                             <tr>
-                                <th className="py-2 px-4 border-b border-gray-200">Cuota segmento Semana 20</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Segmento</th>
                                 <th className="py-2 px-4 border-b border-gray-200">Indicador EPR</th>
                                 <th className="py-2 px-4 border-b border-gray-200">Eficiencia</th>
                             </tr>
@@ -494,7 +494,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('segmento5', {
                                         required: 'Segmento 5 es requerido',
-                                    })} id="segmento5" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 5" />
+                                    })} id="segmento5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 5" />
                                     {(errors.segmento5 != null) && (
                                         <p className="text-red-500">{`${errors.segmento5.message}`}</p>
                                     )}
@@ -502,7 +502,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota5', {
                                         required: 'Cuota es requerida',
-                                    })} id="cuota5" type="text" className="w-full border rounded px-2 py-1" placeholder="$210" />
+                                    })} id="cuota5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$210" />
                                     {(errors.cuota5 != null) && (
                                         <p className="text-red-500">{`${errors.cuota5.message}`}</p>
                                     )}
@@ -510,7 +510,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('eficiencia5', {
                                         required: 'Eficiencia es requerida',
-                                    })} id="eficiencia5" type="text" className="w-full border rounded px-2 py-1" placeholder=".90%" />
+                                    })} id="eficiencia5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".90%" />
                                     {(errors.eficiencia5 != null) && (
                                         <p className="text-red-500">{`${errors.eficiencia5.message}`}</p>
                                     )}
@@ -520,7 +520,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('segmento28', {
                                         required: 'Segmento 28 es requerido',
-                                    })} id="segmento28" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 28" />
+                                    })} id="segmento28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 28" />
                                     {(errors.segmento28 != null) && (
                                         <p className="text-red-500">{`${errors.segmento28.message}`}</p>
                                     )}
@@ -528,7 +528,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota28', {
                                         required: 'Cuota es requerida',
-                                    })} id="cuota28" type="text" className="w-full border rounded px-2 py-1" placeholder="$50" />
+                                    })} id="cuota28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$50" />
                                     {(errors.cuota28 != null) && (
                                         <p className="text-red-500">{`${errors.cuota28.message}`}</p>
                                     )}
@@ -536,7 +536,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('eficiencia28', {
                                         required: 'Eficiencia es requerida',
-                                    })} id="eficiencia28" type="text" className="w-full border rounded px-2 py-1" placeholder=".21%" />
+                                    })} id="eficiencia28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".21%" />
                                     {(errors.eficiencia28 != null) && (
                                         <p className="text-red-500">{`${errors.eficiencia28.message}`}</p>
                                     )}
@@ -546,7 +546,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('segmento6', {
                                         required: 'Segmento 6 es requerido',
-                                    })} id="segmento6" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 6" />
+                                    })} id="segmento6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 6" />
                                     {(errors.segmento6 != null) && (
                                         <p className="text-red-500">{`${errors.segmento6.message}`}</p>
                                     )}
@@ -554,7 +554,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota6', {
                                         required: 'Cuota es requerida',
-                                    })} id="cuota6" type="text" className="w-full border rounded px-2 py-1" placeholder="$34" />
+                                    })} id="cuota6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$34" />
                                     {(errors.cuota6 != null) && (
                                         <p className="text-red-500">{`${errors.cuota6.message}`}</p>
                                     )}
@@ -562,7 +562,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('eficiencia6', {
                                         required: 'Eficiencia es requerida',
-                                    })} id="eficiencia6" type="text" className="w-full border rounded px-2 py-1" placeholder=".15%" />
+                                    })} id="eficiencia6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".15%" />
                                     {(errors.eficiencia6 != null) && (
                                         <p className="text-red-500">{`${errors.eficiencia6.message}`}</p>
                                     )}
@@ -572,7 +572,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('segmento16', {
                                         required: 'Segmento 16 es requerido',
-                                    })} id="segmento16" type="text" className="w-full border rounded px-2 py-1" placeholder="Segmento 16" />
+                                    })} id="segmento16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 16" />
                                     {(errors.segmento16 != null) && (
                                         <p className="text-red-500">{`${errors.segmento16.message}`}</p>
                                     )}
@@ -580,7 +580,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota16', {
                                         required: 'Cuota es requerida',
-                                    })} id="cuota16" type="text" className="w-full border rounded px-2 py-1" placeholder="$7" />
+                                    })} id="cuota16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$7" />
                                     {(errors.cuota16 != null) && (
                                         <p className="text-red-500">{`${errors.cuota16.message}`}</p>
                                     )}
@@ -588,7 +588,7 @@ export default function Despacho() {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('eficiencia16', {
                                         required: 'Eficiencia es requerida',
-                                    })} id="eficiencia16" type="text" className="w-full border rounded px-2 py-1" placeholder=".004%" />
+                                    })} id="eficiencia16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".004%" />
                                     {(errors.eficiencia16 != null) && (
                                         <p className="text-red-500">{`${errors.eficiencia16.message}`}</p>
                                     )}
