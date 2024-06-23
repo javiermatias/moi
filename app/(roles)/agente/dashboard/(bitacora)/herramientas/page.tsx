@@ -1,5 +1,5 @@
 'use client'
-import { Accion } from '@/app/lib/definitions';
+import { Accion, Segmento } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -82,6 +82,20 @@ export default function Despacho() {
     }
     const onSubmit = async (data: FieldValues) => {
 
+        const segmento5: string = getValues('segmento5');
+        const cuota5: string = getValues('cuota5');
+        const eficiencia5: string = getValues('eficiencia5');
+        const segmento28: string = getValues('segmento28');
+        const cuota28: string = getValues('cuota28');
+        const eficiencia28: string = getValues('eficiencia28');
+        const segmento6: string = getValues('segmento6');
+        const cuota6: string = getValues('cuota6');
+        const eficiencia6: string = getValues('eficiencia6');
+        const Segmento5: Segmento = { segmento: segmento5, indicador: cuota5, eficiencia: eficiencia5 }
+        const Segmento28: Segmento = { segmento: segmento28, indicador: cuota28, eficiencia: eficiencia28 }
+        const Segmento6: Segmento = { segmento: segmento6, indicador: cuota6, eficiencia: eficiencia6 }
+        const segmentos = [Segmento5, Segmento28, Segmento6]
+
         setBitacora({
             ...bitacora,
             deudores: getValues('deudores'),
@@ -93,7 +107,8 @@ export default function Despacho() {
             visita: getValues('visita'),
             otro: getValues('otro'),
             hallazgos: hallazgo,
-            acciones: acciones
+            acciones: acciones,
+            segmentos: segmentos
         })
 
         router.push('/agente/dashboard/anexo?id=3')
@@ -501,7 +516,7 @@ export default function Despacho() {
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota5', {
-                                        required: 'Cuota es requerida',
+                                        required: 'Indicador es requerido',
                                     })} id="cuota5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$210" />
                                     {(errors.cuota5 != null) && (
                                         <p className="text-red-500">{`${errors.cuota5.message}`}</p>
@@ -527,7 +542,7 @@ export default function Despacho() {
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota28', {
-                                        required: 'Cuota es requerida',
+                                        required: 'Indicador es requerido',
                                     })} id="cuota28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$50" />
                                     {(errors.cuota28 != null) && (
                                         <p className="text-red-500">{`${errors.cuota28.message}`}</p>
@@ -553,7 +568,7 @@ export default function Despacho() {
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota6', {
-                                        required: 'Cuota es requerida',
+                                        required: 'Indicador es requerido',
                                     })} id="cuota6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$34" />
                                     {(errors.cuota6 != null) && (
                                         <p className="text-red-500">{`${errors.cuota6.message}`}</p>
@@ -579,7 +594,7 @@ export default function Despacho() {
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <input {...register('cuota16', {
-                                        required: 'Cuota es requerida',
+                                        required: 'Indicador es requerido',
                                     })} id="cuota16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$7" />
                                     {(errors.cuota16 != null) && (
                                         <p className="text-red-500">{`${errors.cuota16.message}`}</p>

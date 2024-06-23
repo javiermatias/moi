@@ -52,6 +52,10 @@ export type Bitacora = {
   hallazgos: string[];
   acciones: Accion[];
   segmentos: Segmento[];
+  banco: string;
+  prestador: string;
+  representante_legal: string;
+  persona_entrevista: string;
 
 }
 
