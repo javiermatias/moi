@@ -60,6 +60,9 @@ export type Bitacora = {
   segmento6: string;
   cuota6: string;
   eficiencia6: string;
+  segmento16: string;
+  cuota16: string;
+  eficiencia16: string;
   banco: string;
   prestador: string;
   representante_legal: string;

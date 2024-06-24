@@ -42,14 +42,15 @@ export default function Despacho() {
         if (bitacora.acciones) setAcciones(bitacora.acciones);
         if (bitacora.hallazgos) setHallazgo(bitacora.hallazgos);
         if (bitacora.segmento5) setValue('segmento5', bitacora.segmento5);
-        if (bitacora.cuota5) setValue('cuota5', bitacora.cuota5);
-        if (bitacora.eficiencia5) setValue('eficiencia5', bitacora.eficiencia5);
-        if (bitacora.segmento28) setValue('segmento28', bitacora.segmento28);
-        if (bitacora.cuota28) setValue('cuota28', bitacora.cuota28);
-        if (bitacora.eficiencia28) setValue('eficiencia28', bitacora.eficiencia28);
-        if (bitacora.segmento6) setValue('segmento6', bitacora.segmento6);
-        if (bitacora.cuota6) setValue('cuota6', bitacora.cuota6);
-        if (bitacora.eficiencia6) setValue('eficiencia6', bitacora.eficiencia6);
+        /*         if (bitacora.segmento5) setValue('segmento5', bitacora.segmento5);
+                if (bitacora.cuota5) setValue('cuota5', bitacora.cuota5);
+                if (bitacora.eficiencia5) setValue('eficiencia5', bitacora.eficiencia5);
+                if (bitacora.segmento28) setValue('segmento28', bitacora.segmento28);
+                if (bitacora.cuota28) setValue('cuota28', bitacora.cuota28);
+                if (bitacora.eficiencia28) setValue('eficiencia28', bitacora.eficiencia28);
+                if (bitacora.segmento6) setValue('segmento6', bitacora.segmento6);
+                if (bitacora.cuota6) setValue('cuota6', bitacora.cuota6);
+                if (bitacora.eficiencia6) setValue('eficiencia6', bitacora.eficiencia6); */
 
     }, [bitacora, setValue])
 
