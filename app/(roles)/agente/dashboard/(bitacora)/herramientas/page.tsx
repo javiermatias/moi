@@ -41,6 +41,15 @@ export default function Despacho() {
         if (bitacora.hallazgos) setValue('otro', bitacora.otro);
         if (bitacora.acciones) setAcciones(bitacora.acciones);
         if (bitacora.hallazgos) setHallazgo(bitacora.hallazgos);
+        if (bitacora.segmento5) setValue('segmento5', bitacora.segmento5);
+        if (bitacora.cuota5) setValue('cuota5', bitacora.cuota5);
+        if (bitacora.eficiencia5) setValue('eficiencia5', bitacora.eficiencia5);
+        if (bitacora.segmento28) setValue('segmento28', bitacora.segmento28);
+        if (bitacora.cuota28) setValue('cuota28', bitacora.cuota28);
+        if (bitacora.eficiencia28) setValue('eficiencia28', bitacora.eficiencia28);
+        if (bitacora.segmento6) setValue('segmento6', bitacora.segmento6);
+        if (bitacora.cuota6) setValue('cuota6', bitacora.cuota6);
+        if (bitacora.eficiencia6) setValue('eficiencia6', bitacora.eficiencia6);
 
     }, [bitacora, setValue])
 
@@ -82,20 +91,6 @@ export default function Despacho() {
     }
     const onSubmit = async (data: FieldValues) => {
 
-        const segmento5: string = getValues('segmento5');
-        const cuota5: string = getValues('cuota5');
-        const eficiencia5: string = getValues('eficiencia5');
-        const segmento28: string = getValues('segmento28');
-        const cuota28: string = getValues('cuota28');
-        const eficiencia28: string = getValues('eficiencia28');
-        const segmento6: string = getValues('segmento6');
-        const cuota6: string = getValues('cuota6');
-        const eficiencia6: string = getValues('eficiencia6');
-        const Segmento5: Segmento = { segmento: segmento5, indicador: cuota5, eficiencia: eficiencia5 }
-        const Segmento28: Segmento = { segmento: segmento28, indicador: cuota28, eficiencia: eficiencia28 }
-        const Segmento6: Segmento = { segmento: segmento6, indicador: cuota6, eficiencia: eficiencia6 }
-        const segmentos = [Segmento5, Segmento28, Segmento6]
-
         setBitacora({
             ...bitacora,
             deudores: getValues('deudores'),
@@ -108,7 +103,16 @@ export default function Despacho() {
             otro: getValues('otro'),
             hallazgos: hallazgo,
             acciones: acciones,
-            segmentos: segmentos
+            segmento5: getValues('segmento5'),
+            cuota5: getValues('cuota5'),
+            eficiencia5: getValues('eficiencia5'),
+            segmento28: getValues('segmento28'),
+            cuota28: getValues('cuota28'),
+            eficiencia28: getValues('eficiencia28'),
+            segmento6: getValues('segmento6'),
+            cuota6: getValues('cuota6'),
+            eficiencia6: getValues('eficiencia6')
+
         })
 
         router.push('/agente/dashboard/anexo?id=3')

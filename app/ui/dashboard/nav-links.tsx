@@ -14,7 +14,7 @@ const links = [
   { name: 'Home', href: '/agente/dashboard', icon: HomeIcon },
   {
     name: 'Bitacoras',
-    href: '/agente/dashboard/datos',
+    href: '/agente/dashboard/datos?id=0',
     icon: DocumentDuplicateIcon,
   },
   { name: 'Customers', href: '/agente/dashboard/customers', icon: UserGroupIcon },
