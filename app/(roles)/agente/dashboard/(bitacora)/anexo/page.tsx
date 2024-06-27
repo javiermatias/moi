@@ -25,32 +25,9 @@ export default function Anexo() {
     useEffect(() => {
 
 
-        if (bitacora.volumen_cartera) setValue('volumen_cartera', bitacora.volumen_cartera);
-        if (bitacora.saldo_cartera) setValue('saldo_cartera', bitacora.saldo_cartera);
-        if (bitacora.cuota_semana) setValue('cuota_semana', bitacora.cuota_semana);
-        if (bitacora.plantilla_ideal) setValue('plantilla_ideal', bitacora.plantilla_ideal);
-        if (bitacora.plantilla_real) setValue('plantilla_real', bitacora.plantilla_real);
-        if (bitacora.telefonicos) setValue('telefonicos', bitacora.telefonicos);
-        if (bitacora.presenciales) setValue('presenciales', bitacora.presenciales);
-        if (bitacora.descansos) setValue('descansos', bitacora.descansos);
-        if (bitacora.bajas) setValue('bajas', bitacora.bajas);
-        if (bitacora.altas) setValue('altas', bitacora.altas);
-        if (bitacora.cartera_rmd) setValue('cartera_rmd', bitacora.cartera_rmd);
-        if (bitacora.saldo_cartera_rmd) setValue('saldo_cartera_rmd', bitacora.saldo_cartera_rmd);
-        if (bitacora.cuota_semana_rmd) setValue('cuota_semana_rmd', bitacora.cuota_semana_rmd);
-        if (bitacora.total_plan_pago) setValue('total_plan_pago', bitacora.total_plan_pago);
-        if (bitacora.vigentes) setValue('vigentes', bitacora.vigentes);
-        if (bitacora.cancelados) setValue('cancelados', bitacora.cancelados);
-        if (bitacora.normalidad) setValue('normalidad', bitacora.normalidad);
-        if (bitacora.cuota_planes) setValue('cuota_planes', bitacora.cuota_planes);
-        if (bitacora.avance_planes) setValue('avance_planes', bitacora.avance_planes);
-        if (bitacora.elaborados) setValue('elaborados', bitacora.elaborados);
-        if (bitacora.compromiso) setValue('compromiso', bitacora.compromiso);
-        if (bitacora.pendientes) setValue('pendientes', bitacora.pendientes);
-        if (bitacora.demandas) setValue('demandas', bitacora.demandas);
-        if (bitacora.gestionadas) setValue('gestionadas', bitacora.gestionadas);
-        if (bitacora.acuses) setValue('acuses', bitacora.acuses);
-        if (bitacora.pendientes_ciceron) setValue('pendientes_ciceron', bitacora.pendientes_ciceron);
+     /*    if (bitacora.volumen_cartera) setValue('volumen_cartera', bitacora.volumen_cartera);
+        if (bitacora.saldo_cartera) setValue('saldo_cartera', bitacora.saldo_cartera); */
+
 
     }, [bitacora, setValue])
 
@@ -58,32 +35,11 @@ export default function Anexo() {
 
         setBitacora({
             ...bitacora,
-            volumen_cartera: getValues('volumen_cartera'),
-            saldo_cartera: getValues('saldo_cartera'),
-            cuota_semana: getValues('cuota_semana'),
-            plantilla_ideal: getValues('plantilla_ideal'),
-            plantilla_real: getValues('plantilla_real'),
-            telefonicos: getValues('telefonicos'),
-            presenciales: getValues('presenciales'),
-            descansos: getValues('descansos'),
-            bajas: getValues('bajas'),
-            altas: getValues('altas'),
-            cartera_rmd: getValues('cartera_rmd'),
-            saldo_cartera_rmd: getValues('saldo_cartera_rmd'),
-            cuota_semana_rmd: getValues('cuota_semana_rmd'),
-            total_plan_pago: getValues('total_plan_pago'),
-            vigentes: getValues('vigentes'),
-            cancelados: getValues('cancelados'),
-            normalidad: getValues('normalidad'),
-            cuota_planes: getValues('cuota_planes'),
-            avance_planes: getValues('avance_planes'),
-            elaborados: getValues('elaborados'),
-            compromiso: getValues('compromiso'),
-            pendientes: getValues('pendientes'),
-            demandas: getValues('demandas'),
-            gestionadas: getValues('gestionadas'),
-            acuses: getValues('acuses'),
-            pendientes_ciceron: getValues('pendientes_ciceron')
+            banco: getValues('banco'),
+            prestador: getValues('prestador'),
+            representante_legal: getValues('representante'),
+            entrevistado: getValues('entrevista')
+            
         })
 
         router.push('/agente/dashboard/herramientas?id=2')
@@ -249,6 +205,9 @@ export default function Anexo() {
                         <p className="text-sm">
                             Envió semanal de carteo.
                         </p>
+
+                        <p className="text-sm font-bold mb-2 text-center text-red-400 ">El incumplimiento de las reglas operativas, estan estipuladas en contrato y podran ser motivo de sanción.</p>
+
                     </div>
 
 

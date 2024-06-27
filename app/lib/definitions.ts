@@ -66,7 +66,7 @@ export type Bitacora = {
   banco: string;
   prestador: string;
   representante_legal: string;
-  persona_entrevista: string;
+  entrevistado: string;
 
 
 }
