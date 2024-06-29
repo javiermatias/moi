@@ -46,13 +46,7 @@ export default function DatosGenerales() {
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const [participante, setParticipante] = useState(new Array<Participante>());
-    const mutation = useMutation({
-        mutationFn: createBitacora,
-        onSuccess: () => {
-            // Invalidate and refetch
-            queryClient.invalidateQueries({ queryKey: ['bitacora'] })
-        },
-    })
+
     useEffect(() => {
 
         if (bitacora.asunto) setValue('asunto', bitacora.asunto);
@@ -112,7 +106,7 @@ export default function DatosGenerales() {
         })
 
 
-        await mutation.mutateAsync(bitacora)
+        
         router.push('/agente/dashboard/gestion?id=1')
     }
     return (

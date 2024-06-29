@@ -5,10 +5,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 import { useBitacoraStore } from '@/app/store/authStore';
+import { QueryClient, useMutation } from '@tanstack/react-query';
+import { createBitacora } from '@/app/services/bitacora.service';
 
 export default function Anexo() {
 
+    const queryClient = new QueryClient()
     const { bitacora, setBitacora } = useBitacoraStore()
+    
     const {
         register,
         handleSubmit,
@@ -17,13 +21,19 @@ export default function Anexo() {
         setValue
     } = useForm()
 
-    const [loading, setLoading] = useState(false)
+    
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
-    const router = useRouter()
+    const mutation = useMutation({
+        mutationFn: createBitacora,
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ['bitacora'] })
+        },
+    })
 
     useEffect(() => {
-
+        setValue('banco', "Banco Azteca");
 
      /*    if (bitacora.volumen_cartera) setValue('volumen_cartera', bitacora.volumen_cartera);
         if (bitacora.saldo_cartera) setValue('saldo_cartera', bitacora.saldo_cartera); */
@@ -31,20 +41,24 @@ export default function Anexo() {
 
     }, [bitacora, setValue])
 
-    const onSubmit = async (data: FieldValues) => {
+    const onSubmit = (data: FieldValues) => {
+        console.log("entrevistado" + getValues('entrevistado'))
 
         setBitacora({
             ...bitacora,
             banco: getValues('banco'),
             prestador: getValues('prestador'),
             representante_legal: getValues('representante'),
-            entrevistado: getValues('entrevista')
+            entrevistado: getValues('entrevistado')
             
         })
 
-        router.push('/agente/dashboard/herramientas?id=2')
+        mutation.mutate(bitacora)
+
+        //router.push('/agente/dashboard/herramientas?id=2')
 
     }
+    
     return (
         <>
 
@@ -98,42 +112,44 @@ export default function Anexo() {
                             </div>
 
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="atiende">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistador">
                                     Firma entrevistador
                                 </label>
                                 <input
-                                    {...register('cuota_semana', {
+                                    {...register('firma_entrevistador', /* {
                                         required: 'La cuota de la semana es requerida',
-                                    })}
+                                    } */)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
-                                    id="cuota_semana"
-                                    name="cuota_semana"
-                                    placeholder="3.."
+                                    id="firma_entrevistador"
+                                    name="firma_entrevistador"
+                                    placeholder="..."
+                                    disabled
                                 />
-                                {(errors.cuota_semana != null) && (
+                                {(errors.firma_entrevistador != null) && (
 
-                                    <p className="text-red-500">{`${errors.cuota_semana.message}`}</p>
+                                    <p className="text-red-500">{`${errors.firma_entrevistador.message}`}</p>
                                 )}
                             </div>
 
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="atiende">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistado">
                                     Firma entrevistado
                                 </label>
                                 <input
-                                    {...register('cuota_semana', {
-                                        required: 'La cuota de la semana es requerida',
-                                    })}
+                                    {...register('firma_entrevistado',/*  {
+                                        required: 'La firma del entrevistado es requerida',
+                                    } */)}
                                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
-                                    id="cuota_semana"
-                                    name="cuota_semana"
-                                    placeholder="3.."
+                                    id="firma_entrevistado"
+                                    name="firma_entrevistado"
+                                    placeholder="..."
+                                    disabled
                                 />
-                                {(errors.cuota_semana != null) && (
+                                {(errors.firma_entrevistado != null) && (
 
-                                    <p className="text-red-500">{`${errors.cuota_semana.message}`}</p>
+                                    <p className="text-red-500">{`${errors.firma_entrevistado.message}`}</p>
                                 )}
                             </div>
 
@@ -217,9 +233,9 @@ export default function Anexo() {
                     <button
                         className="w-full bg-blue-700 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300"
                         type="submit"
-                        disabled={loading}
+                        disabled={mutation.isPending }
                     >
-                        {loading ? <Spinner /> : 'Cargar Bitacora'}
+                        {mutation.isPending ? <Spinner /> : 'Cargar Bitacora'}
                     </button>
 
                 </form>

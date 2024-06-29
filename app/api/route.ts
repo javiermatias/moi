@@ -27,41 +27,88 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const { asunto, nombre, fecha, lugar, convocado, id_user, id_despacho,
-    nombre_despacho, nombre_atiende, cargo_atiende, participantes
+    nombre_despacho, nombre_atiende, cargo_atiende, participantes, volumen_cartera,
+    saldo_cartera,cuota_semana,plantilla_ideal,plantilla_real, telefonicos,
+    presenciales,descansos,bajas,altas,cartera_rmd,saldo_cartera_rmd,
+    cuota_semana_rmd,total_plan_pago,vigentes,cancelados,normalidad,
+    cuota_planes,avance_planes,elaborados,compromiso,pendientes,demandas,
+    gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
+    carta,visita,otro,hallazgos,acciones,segmento5,cuota5,eficiencia5,
+    segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
+    segmento16,cuota16,eficiencia16,
+    banco,prestador,representante_legal,entrevistado
+
   } = await request.json();
 
-  /* export type Bitacora = {
-    //semana: string;
-    asunto: string;
-    nombre: string; //nombreColaborador
-    fecha: string;
-    lugar: string;
-    convocado: string;//convocadoPor
-    id_user: number; //id usuario
-    id_despacho: string; //id despacho
-    nombre_despacho: string; //nombre despacho
-    nombre_atiende: string; //nombre atiende
-    cargo_atiende: string; //cargo de quein atiende
-    participantes: Participante[];
+  console.log("entrevistado"+entrevistado)
+
   
-  } */
+  try {
+    // Insert into Bitacora
+    const result:any = await executeQuery({
+      query: `
+        INSERT INTO Bitacora (fecha, asunto, nombre, lugar, convocado, id_user,
+          id_despacho,nombre_despacho, nombre_atiende, cargo_atiende, volumen_cartera,
+          saldo_cartera,cuota_semana,plantilla_ideal,plantilla_real, telefonicos,
+          presenciales,descansos,bajas,altas,cartera_rmd,saldo_cartera_rmd,
+          cuota_semana_rmd,total_plan_pago,vigentes,cancelados,normalidad,
+          cuota_planes,avance_planes,elaborados,compromiso,pendientes,demandas,
+          gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
+          carta,visita,otro,segmento5,cuota5,eficiencia5, segmento28,eficiencia28,cuota28,
+          segmento6,cuota6,eficiencia6,segmento16,cuota16,eficiencia16,banco,prestador,
+          representante_legal,entrevistado
+        ) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+          ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
+          ?,?,?,?,?)`,
+      values: [
+        fecha, asunto, nombre, lugar, convocado, id_user,
+        id_despacho,nombre_despacho, nombre_atiende, cargo_atiende, volumen_cartera,
+        saldo_cartera,cuota_semana,plantilla_ideal,plantilla_real, telefonicos,
+        presenciales,descansos,bajas,altas,cartera_rmd,saldo_cartera_rmd,
+        cuota_semana_rmd,total_plan_pago,vigentes,cancelados,normalidad,
+    cuota_planes,avance_planes,elaborados,compromiso,pendientes,demandas,
+    gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
+    carta,visita,otro,segmento5,cuota5,eficiencia5,
+    segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
+    segmento16,cuota16,eficiencia16,
+    banco,prestador,representante_legal,entrevistado
+      ]
+    });
+
+    console.log(result);
+
+    return new Response(`Bitacora was save success!`, {
+      status: 200
+    })
+
+    //const bitacoraId = result.insertId;
+
+    // Insert into Participante
+/*     for (const participante of participantes) {
+      await executeQuery({
+        query: 'INSERT INTO Participante (bitacora_id, nombre, puesto) VALUES (?, ?, ?)',
+        values: [bitacoraId, participante.nombre, participante.puesto]
+      });
+    }
+
+    // Insert into Accion
+    for (const accion of acciones) {
+      await executeQuery({
+        query: 'INSERT INTO Accion (bitacora_id, descripcion, responsable, fecha) VALUES (?, ?, ?, ?)',
+        values: [bitacoraId, accion.descripcion, accion.responsable, accion.fecha]
+      });
+    } */
+
+    //console.log('Bitacora inserted successfully!');
+  } catch (error) {
+    console.error('Error inserting Bitacora:', error);
+    return new Response(`${error}`, {
+      status: 400
+    })
+  }
 
 
-  console.log(asunto);
-  console.log(nombre);
-  console.log(fecha);
-  console.log(lugar);
-  console.log(convocado);
-  console.log(id_user);
-  console.log(id_despacho);
-  console.log(nombre_despacho);
-  console.log(nombre_atiende);
-  console.log(cargo_atiende);
-  console.log(participantes);
-
-  return new Response(`Hello, Next.js!`, {
-    status: 200
-  })
   /*   try {
       //console.log("req nom", req.body)
       const result = await executeQuery({

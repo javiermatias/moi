@@ -71,13 +71,6 @@ export type Bitacora = {
 
 }
 
-export type Segmento = {
-  segmento: string;
-  indicador: string;
-  eficiencia: string;
-}
-
-
 
 
 export type Participante = {
