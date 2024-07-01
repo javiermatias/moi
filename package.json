@@ -15,6 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.1",
     "@heroicons/react": "^2.0.18",
     "@prisma/client": "^5.14.0",
+    "@react-pdf/renderer": "^3.4.4",
     "@tailwindcss/forms": "^0.5.7",
     "@tanstack/react-query": "^5.40.0",
     "@tanstack/react-query-devtools": "^5.40.0",
@@ -27,7 +28,9 @@
     "luxon": "^3.4.4",
     "next": "^14.0.2",
     "next-auth": "^5.0.0-beta.18",
+    "pdfkit": "^0.15.0",
     "postcss": "8.4.31",
+    "puppeteer": "^22.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.4",
@@ -35,14 +38,20 @@
     "rsuite": "^5.64.0",
     "serverless-mysql": "^1.5.5",
     "tailwindcss": "3.3.3",
+    "uninstall": "^0.0.0",
     "use-debounce": "^10.0.0",
     "zod": "^3.22.2",
     "zustand": "^4.5.2"
+  },
+  "overrides": {
+    "@react-pdf/font": "2.2.1",
+    "@react-pdf/pdfkit": "2.1.0"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.35.6",
     "@types/bcrypt": "^5.0.1",
     "@types/node": "^20.12.12",
+    "@types/pdfkit": "^0.13.4",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.14",
     "@vercel/style-guide": "^5.0.1",

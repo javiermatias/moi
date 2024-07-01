@@ -1,7 +1,7 @@
 import { Session } from "next-auth"
 import { devtools, persist } from 'zustand/middleware'
 import create from 'zustand'
-import { Accion, Bitacora, Participante, Segmento } from "../lib/definitions"
+import { Accion, Bitacora, Participante } from "../lib/definitions"
 
 interface AuthState {
     session: Session
