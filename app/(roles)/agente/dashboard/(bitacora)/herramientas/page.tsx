@@ -1,5 +1,5 @@
 'use client'
-import { Accion, Segmento } from '@/app/lib/definitions';
+import { Accion } from '@/app/lib/definitions';
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -44,16 +44,16 @@ export default function Despacho() {
         if (bitacora.segmento5) setValue('segmento5', bitacora.segmento5);
         if (bitacora.segmento5) setValue('segmento5', bitacora.segmento5);
         if (bitacora.cuota5) setValue('cuota5', bitacora.cuota5);
-                if (bitacora.eficiencia5) setValue('eficiencia5', bitacora.eficiencia5);
-                if (bitacora.segmento28) setValue('segmento28', bitacora.segmento28);
-                if (bitacora.cuota28) setValue('cuota28', bitacora.cuota28);
-                if (bitacora.eficiencia28) setValue('eficiencia28', bitacora.eficiencia28);
-                if (bitacora.segmento6) setValue('segmento6', bitacora.segmento6);
-                if (bitacora.cuota6) setValue('cuota6', bitacora.cuota6);
-                if (bitacora.eficiencia6) setValue('eficiencia6', bitacora.eficiencia6);
-                if (bitacora.segmento16) setValue('segmento16', bitacora.segmento16);
-                if (bitacora.cuota16) setValue('cuota16', bitacora.cuota16);
-                if (bitacora.eficiencia16) setValue('eficiencia16', bitacora.eficiencia16);
+        if (bitacora.eficiencia5) setValue('eficiencia5', bitacora.eficiencia5);
+        if (bitacora.segmento28) setValue('segmento28', bitacora.segmento28);
+        if (bitacora.cuota28) setValue('cuota28', bitacora.cuota28);
+        if (bitacora.eficiencia28) setValue('eficiencia28', bitacora.eficiencia28);
+        if (bitacora.segmento6) setValue('segmento6', bitacora.segmento6);
+        if (bitacora.cuota6) setValue('cuota6', bitacora.cuota6);
+        if (bitacora.eficiencia6) setValue('eficiencia6', bitacora.eficiencia6);
+        if (bitacora.segmento16) setValue('segmento16', bitacora.segmento16);
+        if (bitacora.cuota16) setValue('cuota16', bitacora.cuota16);
+        if (bitacora.eficiencia16) setValue('eficiencia16', bitacora.eficiencia16);
 
     }, [bitacora, setValue])
 
