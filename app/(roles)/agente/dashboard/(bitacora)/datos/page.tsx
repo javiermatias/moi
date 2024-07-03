@@ -75,7 +75,7 @@ export default function DatosGenerales() {
         // Update the state with the filtered badges array
         setParticipante(updatedParticipante)
 
-        // console.log("Se borró el número con id " + id);
+        console.log(participante);
     }
 
     const onSubmit = async (data: FieldValues) => {

@@ -2,7 +2,7 @@ import { type NextRequest } from 'next/server'
 import executeQuery from '../lib/db';
 
 
-export async function GET(request: NextRequest) {
+/* export async function GET(request: NextRequest) {
   const token = request.cookies.get('token')
   try {
     //console.log("req nom", req.body)
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     status: 200,
     headers: { 'Set-Cookie': `token=${token?.value}` },
   })
-}
+} */
 
 export async function POST(request: NextRequest) {
   const { asunto, nombre, fecha, lugar, convocado, id_user, id_despacho,
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     carta,visita,otro,hallazgos,acciones,segmento5,cuota5,eficiencia5,
     segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
     segmento16,cuota16,eficiencia16,
-    banco,prestador,representante_legal,entrevistado
+    banco,prestador,representante_legal,entrevistado,firma,firma1
 
   } = await request.json();
 
@@ -56,11 +56,11 @@ export async function POST(request: NextRequest) {
           gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
           carta,visita,otro,segmento5,cuota5,eficiencia5, segmento28,eficiencia28,cuota28,
           segmento6,cuota6,eficiencia6,segmento16,cuota16,eficiencia16,banco,prestador,
-          representante_legal,entrevistado
+          representante_legal,entrevistado,firma,firma1
         ) 
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
           ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-          ?,?,?,?,?)`,
+          ?,?,?,?,?,?,?)`,
       values: [
         fecha, asunto, nombre, lugar, convocado, id_user,
         id_despacho,nombre_despacho, nombre_atiende, cargo_atiende, volumen_cartera,
@@ -72,11 +72,31 @@ export async function POST(request: NextRequest) {
     carta,visita,otro,segmento5,cuota5,eficiencia5,
     segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
     segmento16,cuota16,eficiencia16,
-    banco,prestador,representante_legal,entrevistado
+    banco,prestador,representante_legal,entrevistado,firma,firma1
       ]
     });
+    const bitacoraId = result.insertId;
+    for (const participante of participantes) {
+      await executeQuery({
+        query: 'INSERT INTO Participante (bitacora_id, nombre, puesto) VALUES (?, ?, ?)',
+        values: [bitacoraId, participante.nombre, participante.puesto]
+      });
+    }
+    for (const hallazgo of hallazgos) {
+      await executeQuery({
+        query: 'INSERT INTO Hallazgo (bitacora_id, descripcion) VALUES (?, ?)',
+        values: [bitacoraId, hallazgo]
+      });
+    }
 
-    console.log(result);
+    for (const accion of acciones) {
+      await executeQuery({
+        query: 'INSERT INTO Accion (bitacora_id, descripcion, responsable, fecha) VALUES (?, ?, ?, ?)',
+        values: [bitacoraId, accion.descripcion, accion.responsable, accion.fecha]
+      });
+    } 
+
+    
 
     return new Response(`Bitacora was save success!`, {
       status: 200
@@ -84,21 +104,7 @@ export async function POST(request: NextRequest) {
 
     //const bitacoraId = result.insertId;
 
-    // Insert into Participante
-/*     for (const participante of participantes) {
-      await executeQuery({
-        query: 'INSERT INTO Participante (bitacora_id, nombre, puesto) VALUES (?, ?, ?)',
-        values: [bitacoraId, participante.nombre, participante.puesto]
-      });
-    }
 
-    // Insert into Accion
-    for (const accion of acciones) {
-      await executeQuery({
-        query: 'INSERT INTO Accion (bitacora_id, descripcion, responsable, fecha) VALUES (?, ?, ?, ?)',
-        values: [bitacoraId, accion.descripcion, accion.responsable, accion.fecha]
-      });
-    } */
 
     //console.log('Bitacora inserted successfully!');
   } catch (error) {

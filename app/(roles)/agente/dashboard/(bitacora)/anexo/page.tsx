@@ -2,16 +2,25 @@
 import Spinner from '@/app/ui/spiner'
 import Step from '@/app/ui/steps';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 import { useBitacoraStore } from '@/app/store/authStore';
 import { QueryClient, useMutation } from '@tanstack/react-query';
 import { createBitacora } from '@/app/services/bitacora.service';
+import SignaturePad from 'react-signature-pad-wrapper'
+import { toast } from 'react-toastify';
 
 export default function Anexo() {
 
     const queryClient = new QueryClient()
     const { bitacora, setBitacora } = useBitacoraStore()
+    
+    const sigCanvas = useRef<SignaturePad | null>(null);
+    const sigCanvas1 = useRef<SignaturePad | null>(null);
+    const [sign,setSign] = useState();
+    const [sign1,setSign1] = useState();
+    const [url,setUrl] = useState();
+    const [url1,setUrl1] = useState();
     
     const {
         register,
@@ -31,6 +40,11 @@ export default function Anexo() {
             queryClient.invalidateQueries({ queryKey: ['bitacora'] })
         },
     })
+    const clearSignature = () => {
+        if (sigCanvas.current) {
+            sigCanvas.current.clear();
+        }
+    };
 
     useEffect(() => {
         setValue('banco', "Banco Azteca");
@@ -42,9 +56,34 @@ export default function Anexo() {
     }, [bitacora, setValue])
 
     const onSubmit = (data: FieldValues) => {
-        console.log("entrevistado" + getValues('entrevistado'))
+        let signatureData = '';
+        let signatureData1 = '';
 
-        setBitacora({
+        
+        if (sigCanvas.current){ 
+        const isEmpty = sigCanvas.current.isEmpty();
+        if(isEmpty){
+            toast.error('Tienes que firmar!')
+            console.log("errorfirma")
+            return;
+        }else{
+            signatureData = sigCanvas.current.toDataURL();
+            console.log(signatureData);  
+        }
+  
+        }
+        if (sigCanvas1.current){ 
+            const isEmpty = sigCanvas1.current.isEmpty();
+            if(isEmpty){
+                toast.error('Tu entrevistado tiene que firmar!')
+                console.log("errorfirma1")
+                return;
+            }else{
+                signatureData = sigCanvas1.current.toDataURL();
+                console.log(signatureData1);  
+            }  
+        }
+    /*     setBitacora({
             ...bitacora,
             banco: getValues('banco'),
             prestador: getValues('prestador'),
@@ -53,7 +92,7 @@ export default function Anexo() {
             
         })
 
-        mutation.mutate(bitacora)
+        mutation.mutate(bitacora) */
 
         //router.push('/agente/dashboard/herramientas?id=2')
 
@@ -115,42 +154,24 @@ export default function Anexo() {
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistador">
                                     Firma entrevistador
                                 </label>
-                                <input
-                                    {...register('firma_entrevistador', /* {
-                                        required: 'La cuota de la semana es requerida',
-                                    } */)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                    type="text"
-                                    id="firma_entrevistador"
-                                    name="firma_entrevistador"
-                                    placeholder="..."
-                                    disabled
-                                />
-                                {(errors.firma_entrevistador != null) && (
-
-                                    <p className="text-red-500">{`${errors.firma_entrevistador.message}`}</p>
-                                )}
+                                <div style={{border:"1px solid black"}}>
+                                <SignaturePad ref={sigCanvas}/>
+                   
+                                </div>
+                                <div>
+            <button onClick={clearSignature} className='bg-blue-500 hover:bg-red-700  font-bold text-white py-3 px-4 rounded-md w-fit'>Limpiar</button>
+            
+          </div>
+                      
                             </div>
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistado">
                                     Firma entrevistado
                                 </label>
-                                <input
-                                    {...register('firma_entrevistado',/*  {
-                                        required: 'La firma del entrevistado es requerida',
-                                    } */)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                                    type="text"
-                                    id="firma_entrevistado"
-                                    name="firma_entrevistado"
-                                    placeholder="..."
-                                    disabled
-                                />
-                                {(errors.firma_entrevistado != null) && (
-
-                                    <p className="text-red-500">{`${errors.firma_entrevistado.message}`}</p>
-                                )}
+                                <div style={{border:"1px solid black"}}>
+                                <SignaturePad ref={sigCanvas1}/>
+                                </div>
                             </div>
 
                             <div className="mb-4">

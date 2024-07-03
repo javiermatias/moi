@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
 import { useBitacoraStore } from '@/app/store/authStore';
+import { toast } from 'react-toastify';
 
 
 
@@ -94,6 +95,16 @@ export default function Despacho() {
         // console.log("Se borró el número con id " + id);
     }
     const onSubmit = async (data: FieldValues) => {
+
+        if (acciones.length === 0) {
+            toast.error('Tienes que cargar al menos una accion!')
+            return
+        }
+        if (hallazgo.length === 0) {
+            toast.error('Tienes que cargar al menos un hallazgo!')
+            return
+        }
+
 
         setBitacora({
             ...bitacora,

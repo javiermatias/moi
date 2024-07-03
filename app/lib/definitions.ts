@@ -67,6 +67,8 @@ export type Bitacora = {
   prestador: string;
   representante_legal: string;
   entrevistado: string;
+  firma:string;
+  firma1:string;
 
 
 }
