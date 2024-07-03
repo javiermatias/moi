@@ -9,18 +9,16 @@ import { QueryClient, useMutation } from '@tanstack/react-query';
 import { createBitacora } from '@/app/services/bitacora.service';
 import SignaturePad from 'react-signature-pad-wrapper'
 import { toast } from 'react-toastify';
+import { Participante, Accion } from '@/app/lib/definitions';
 
 export default function Anexo() {
 
     const queryClient = new QueryClient()
     const { bitacora, setBitacora } = useBitacoraStore()
-    
+    const router = useRouter()
     const sigCanvas = useRef<SignaturePad | null>(null);
     const sigCanvas1 = useRef<SignaturePad | null>(null);
-    const [sign,setSign] = useState();
-    const [sign1,setSign1] = useState();
-    const [url,setUrl] = useState();
-    const [url1,setUrl1] = useState();
+
     
     const {
         register,
@@ -45,17 +43,23 @@ export default function Anexo() {
             sigCanvas.current.clear();
         }
     };
+    const clearSignature1 = () => {
+        if (sigCanvas1.current) {
+            sigCanvas1.current.clear();
+        }
+    };
 
     useEffect(() => {
-        setValue('banco', "Banco Azteca");
+        setValue('banco', "BANCO AZTECA S.A.");
 
-     /*    if (bitacora.volumen_cartera) setValue('volumen_cartera', bitacora.volumen_cartera);
-        if (bitacora.saldo_cartera) setValue('saldo_cartera', bitacora.saldo_cartera); */
-
-
+     if (bitacora.prestador) setValue('prestador', bitacora.prestador);
+     if (bitacora.representante_legal) setValue('representante', bitacora.representante_legal); 
+     if (bitacora.entrevistado) setValue('entrevistado', bitacora.entrevistado); 
+     if (bitacora.firma) sigCanvas.current?.fromDataURL(bitacora.firma);
+     if (bitacora.firma1) sigCanvas1.current?.fromDataURL(bitacora.firma1);
     }, [bitacora, setValue])
 
-    const onSubmit = (data: FieldValues) => {
+    const onSubmit = async(data: FieldValues) => {
         let signatureData = '';
         let signatureData1 = '';
 
@@ -79,22 +83,99 @@ export default function Anexo() {
                 console.log("errorfirma1")
                 return;
             }else{
-                signatureData = sigCanvas1.current.toDataURL();
+                signatureData1 = sigCanvas1.current.toDataURL();
                 console.log(signatureData1);  
             }  
         }
-    /*     setBitacora({
+
+        const updatedBitacora = {
             ...bitacora,
             banco: getValues('banco'),
             prestador: getValues('prestador'),
             representante_legal: getValues('representante'),
-            entrevistado: getValues('entrevistado')
-            
-        })
-
-        mutation.mutate(bitacora) */
-
+            entrevistado: getValues('entrevistado'),
+            firma: signatureData,
+            firma1: signatureData1
+        };
+     
+        
+        setBitacora(updatedBitacora);
+        mutation.mutate(updatedBitacora);
+        
         //router.push('/agente/dashboard/herramientas?id=2')
+
+    }
+
+    if(mutation.isSuccess){                        
+      
+        setBitacora({
+            asunto: '',
+            nombre: '', //nombreColaborador
+            fecha: '',
+            lugar: '',
+            convocado: '',//convocadoPor
+            id_user: 0,
+            id_despacho: '',
+            nombre_despacho: '',
+            nombre_atiende: '',
+            cargo_atiende: '',
+            participantes: new Array<Participante>(),
+            volumen_cartera: '',
+            saldo_cartera: '',
+            cuota_semana: '',
+            plantilla_ideal: '',
+            plantilla_real: '',
+            telefonicos: '',
+            presenciales: '',
+            descansos: '',
+            bajas: '',
+            altas: '',
+            cartera_rmd: '',
+            saldo_cartera_rmd: '',
+            cuota_semana_rmd: '',
+            total_plan_pago: '',
+            vigentes: '',
+            cancelados: '',
+            normalidad: '',
+            cuota_planes: '',
+            avance_planes: '',
+            elaborados: '',
+            compromiso: '',
+            pendientes: '',
+            demandas: '',
+            gestionadas: '',
+            acuses: '',
+            pendientes_ciceron: '',
+            deudores: '',
+            llamada: '',
+            blaster: '',
+            sms: '',
+            whatsapp: '',
+            carta: '',
+            visita: '',
+            otro: '',
+            hallazgos: [],
+            acciones: new Array<Accion>(),
+            segmento5: '',
+            cuota5: '',
+            eficiencia5: '',
+            segmento28: '',
+            cuota28: '',
+            eficiencia28: '',
+            segmento6: '',
+            cuota6: '',
+            eficiencia6: '',
+            segmento16: '',
+            cuota16: '',
+            eficiencia16: '',             
+            banco: '',
+            prestador: '',
+            representante_legal: '',
+            entrevistado: '',
+            firma:'',
+            firma1:''
+        })
+        router.push('/agente/dashboard');
 
     }
     
@@ -159,9 +240,8 @@ export default function Anexo() {
                    
                                 </div>
                                 <div>
-            <button onClick={clearSignature} className='bg-blue-500 hover:bg-red-700  font-bold text-white py-3 px-4 rounded-md w-fit'>Limpiar</button>
-            
-          </div>
+                                <button onClick={clearSignature} className='bg-blue-500 hover:bg-red-700  font-bold text-white py-3 px-4 rounded-md w-fit'>Limpiar</button>
+                                </div>
                       
                             </div>
 
@@ -172,17 +252,21 @@ export default function Anexo() {
                                 <div style={{border:"1px solid black"}}>
                                 <SignaturePad ref={sigCanvas1}/>
                                 </div>
+                                <div>
+            <button onClick={clearSignature1} className='bg-blue-500 hover:bg-red-700  font-bold text-white py-3 px-4 rounded-md w-fit'>Limpiar</button>
+            
+          </div>
                             </div>
 
                             <div className="mb-4">
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="representante">
+                                <label className="block text-gray-700  text-sm font-bold mb-2" htmlFor="representante">
                                     Representante Legal
                                 </label>
                                 <input
                                     {...register('representante', {
                                         required: 'La cuota de la semana es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="representante"
                                     name="representante"
@@ -202,7 +286,7 @@ export default function Anexo() {
                                     {...register('entrevistado', {
                                         required: 'La cuota de la semana es requerida',
                                     })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    className="w-full px-3 py-2 text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                     type="text"
                                     id="entrevistado"
                                     name="entrevistado"
