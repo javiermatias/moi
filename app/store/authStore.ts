@@ -48,6 +48,7 @@ export const useBitacoraStore = create<BitacoraState>()(
         persist(
             (set) => ({
                 bitacora: {
+                    id:0,
                     asunto: '',
                     nombre: '', //nombreColaborador
                     fecha: '',

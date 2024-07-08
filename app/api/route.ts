@@ -2,28 +2,30 @@ import { type NextRequest } from 'next/server'
 import executeQuery from '../lib/db';
 
 
-/* export async function GET(request: NextRequest) {
-  const token = request.cookies.get('token')
-  try {
-    //console.log("req nom", req.body)
-    const result = await executeQuery({
-      query: 'INSERT INTO bitacora (fecha_hora, asunto, lugar, convocado_por) VALUES (?, ?, ?, ?)',
-      values: [
-        '2024-05-23 14:30:00',  // fecha_hora
-        'Reunión de Proyecto',    // asunto
-        'Sala de Conferencias',   // lugar
-        'Juan Pérez'              // convocado_por
-      ]
+ export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams; 
+
+  console.log(searchParams.get('page'));
+
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const pageSize = parseInt(searchParams.get('size') || '10', 10);
+  
+  const offset = (page - 1) * pageSize;
+  
+  let result: any="";
+  try {    
+      result = await executeQuery({
+      query: 'SELECT * FROM Bitacora ORDER BY fecha DESC LIMIT ? OFFSET ?',
+      values: [pageSize, offset]
     });
-    console.log("ttt", result);
+    
   } catch (error) {
     console.log(error);
   }
-  return new Response(`Hello, Next.js! token=${token?.value}`, {
-    status: 200,
-    headers: { 'Set-Cookie': `token=${token?.value}` },
-  })
-} */
+  //console.log("ttt", result);
+  const re = result.result;
+  return Response.json({ re })
+} 
 
 export async function POST(request: NextRequest) {
   const { asunto, nombre, fecha, lugar, convocado, id_user, id_despacho,
@@ -67,12 +69,12 @@ export async function POST(request: NextRequest) {
         saldo_cartera,cuota_semana,plantilla_ideal,plantilla_real, telefonicos,
         presenciales,descansos,bajas,altas,cartera_rmd,saldo_cartera_rmd,
         cuota_semana_rmd,total_plan_pago,vigentes,cancelados,normalidad,
-    cuota_planes,avance_planes,elaborados,compromiso,pendientes,demandas,
-    gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
-    carta,visita,otro,segmento5,cuota5,eficiencia5,
-    segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
-    segmento16,cuota16,eficiencia16,
-    banco,prestador,representante_legal,entrevistado,firma,firma1
+        cuota_planes,avance_planes,elaborados,compromiso,pendientes,demandas,
+        gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
+        carta,visita,otro,segmento5,cuota5,eficiencia5,
+        segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
+        segmento16,cuota16,eficiencia16,
+        banco,prestador,representante_legal,entrevistado,firma,firma1
       ]
     });
     const bitacoraId = result.insertId;
@@ -114,24 +116,4 @@ export async function POST(request: NextRequest) {
     })
   }
 
-
-  /*   try {
-      //console.log("req nom", req.body)
-      const result = await executeQuery({
-        query: 'INSERT INTO bitacora (fecha_hora, asunto, lugar, convocado_por) VALUES (?, ?, ?, ?)',
-        values: [
-          '2024-05-23 14:30:00',  // fecha_hora
-          'Reunión de Proyecto',    // asunto
-          'Sala de Conferencias',   // lugar
-          'Juan Pérez'              // convocado_por
-        ]
-      });
-      return new Response('Bitacora created sucesfully')
-    } catch (error) {
-      console.log(error);
-    } */
-  /*   return new Response(`Hello, Next.js! token=${token?.value}`, {
-      status: 200,
-      headers: { 'Set-Cookie': `token=${token?.value}` },
-    }) */
 }

@@ -109,6 +109,7 @@ export default function Anexo() {
     if(mutation.isSuccess){                        
       
         setBitacora({
+            id:0,
             asunto: '',
             nombre: '', //nombreColaborador
             fecha: '',

@@ -4,6 +4,7 @@
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 export type Bitacora = {
   //semana: string;
+  id:number;
   asunto: string;
   nombre: string; //nombreColaborador
   fecha: string;
