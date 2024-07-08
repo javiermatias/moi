@@ -18,13 +18,14 @@ import executeQuery from '../lib/db';
       query: 'SELECT * FROM Bitacora ORDER BY fecha DESC LIMIT ? OFFSET ?',
       values: [pageSize, offset]
     });
+    //console.log(result)
     
   } catch (error) {
     console.log(error);
   }
   //console.log("ttt", result);
-  const re = result.result;
-  return Response.json({ re })
+  //const re = result.result;
+  return Response.json({ result })
 } 
 
 export async function POST(request: NextRequest) {
