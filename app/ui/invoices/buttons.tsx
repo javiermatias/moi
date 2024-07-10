@@ -17,7 +17,7 @@ export function CreateInvoice() {
 export function UpdateInvoice({ id }: { id: string }) {
   return (
     <Link
-      href={`/dashboard/invoices/${id}/edit`}
+      href={`/supervisor/detail?id=${id}`}
       className="rounded-md border p-2 hover:bg-gray-100"
     >
       <EyeIcon  className="w-5" />

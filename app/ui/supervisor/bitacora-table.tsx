@@ -12,7 +12,7 @@ export default function BitacoraTable({
 }: {
   currentPage: number;
 }) {
-  console.log(currentPage);
+  //console.log(currentPage);
 
   const { isPending, error, data,isSuccess } = useQuery({
     queryKey: ['repoData'],
@@ -31,7 +31,7 @@ export default function BitacoraTable({
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-          <div className="md:hidden">
+       {/*    <div className="block md:hidden sm:hidden">
             {data?.result?.map((bitacora:Bitacora) => (
               <div
                 key={bitacora.id}
@@ -39,7 +39,7 @@ export default function BitacoraTable({
               >       
               </div>
             ))}
-          </div>
+          </div> */}
           <table className="min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
@@ -55,8 +55,9 @@ export default function BitacoraTable({
                 <th scope="col" className="px-3 py-5 font-medium">
                   Nombre Despacho
                 </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
-                  <span className="sr-only">Ver</span>
+                <th scope="col" className="px-3 font-medium whitespace-nowrap py-3 pl-6 pr-3">
+                <div className="flex justify-end gap-3">Ver Bitacora</div>
+                  
                 </th>
            
               </tr>

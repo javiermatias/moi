@@ -23,7 +23,7 @@ import executeQuery from '../lib/db';
   } catch (error) {
     console.log(error);
   }
-  //console.log("ttt", result);
+  console.log("ttt", result);
   //const re = result.result;
   return Response.json({ result })
 } 

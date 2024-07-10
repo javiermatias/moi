@@ -1,6 +1,8 @@
+'use client'
 import { lusitana } from "@/app/ui/fonts";
 import { InvoicesTableSkeleton } from "@/app/ui/skeletons";
 import BitacoraTable from "@/app/ui/supervisor/bitacora-table";
+import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -9,16 +11,23 @@ export default function Page({
     searchParams,
   }: {
     searchParams?: {     
-      page?: string;
+      id?: string;
     };
   }) {
-    const currentPage = Number(searchParams?.page) || 1;
-    //const [actualPage, setActualPage] = useState(currentPage);
+    const currentPage = Number(searchParams?.id) || 1;
+    const { isPending, error, data,isSuccess } = useQuery({
+        queryKey: ['repoData'],
+        queryFn: () =>
+          fetch(`/api/detail?id=${currentPage}`).then((res) =>
+            res.json(),
+          ),
+      })
 
-    /* const now = DateTime.now();
-    console.log(now)
-    console.log(now.toString())
-    console.log(DateTime.now().weekNumber) */
+    if(isSuccess){
+
+        console.table(data);
+    }
+
     return (
         <div className="w-full">
           <div className="flex w-full items-center justify-between">
