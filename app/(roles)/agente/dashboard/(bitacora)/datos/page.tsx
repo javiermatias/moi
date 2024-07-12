@@ -7,30 +7,14 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
-import { useMutation, QueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import { createBitacora } from '@/app/services/bitacora.service';
 import { useBitacoraStore } from '@/app/store/authStore';
 import Badge from '@/app/ui/badge';
-
-/* export type Bitacora = {
-  semana: string;
-  asunto: string;
-  nombre: string; //nombreColaborador
-  fecha: string;
-  lugar: string;
-  hora: string;
-  convocado: string;//convocadoPor
-  id_user: number; //id usuario
-
-}*/
-
 
 export default function DatosGenerales() {
 
     const { data: session } = useSession()
-    let user: any = { ...session?.user }
-    const queryClient = new QueryClient()
+    let user: any = { ...session?.user }    
     const { bitacora, setBitacora } = useBitacoraStore()
     console.log(bitacora)
     const {
@@ -46,6 +30,7 @@ export default function DatosGenerales() {
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const [participante, setParticipante] = useState(new Array<Participante>());
+    console.table(user);
 
     useEffect(() => {
 
@@ -58,6 +43,7 @@ export default function DatosGenerales() {
         if (bitacora.nombre_atiende) setValue('atiende', bitacora.nombre_atiende);
         if (bitacora.cargo_atiende) setValue('cargo', bitacora.cargo_atiende);
         if (bitacora.participantes) setParticipante(bitacora.participantes);
+        
 
     }, [bitacora, setValue])
 
@@ -75,7 +61,7 @@ export default function DatosGenerales() {
         // Update the state with the filtered badges array
         setParticipante(updatedParticipante)
 
-        console.log(participante);
+      
     }
 
     const onSubmit = async (data: FieldValues) => {
@@ -102,7 +88,10 @@ export default function DatosGenerales() {
             nombre_despacho: getValues('nombredespacho'),
             nombre_atiende: getValues('atiende'),
             cargo_atiende: getValues('cargo'),
-            participantes: participante
+            participantes: participante,
+            numero_empleado:user.numero,
+            nombre_empleado:user.nombre,
+            posicion_empleado:user.posicion
         })
 
 

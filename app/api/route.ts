@@ -39,7 +39,8 @@ export async function POST(request: NextRequest) {
     carta,visita,otro,hallazgos,acciones,segmento5,cuota5,eficiencia5,
     segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
     segmento16,cuota16,eficiencia16,
-    banco,prestador,representante_legal,entrevistado,firma,firma1
+    banco,prestador,representante_legal,entrevistado,firma,firma1,
+    numero_empleado, nombre_empleado,posicion_empleado
 
   } = await request.json();
 
@@ -59,11 +60,11 @@ export async function POST(request: NextRequest) {
           gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
           carta,visita,otro,segmento5,cuota5,eficiencia5, segmento28,eficiencia28,cuota28,
           segmento6,cuota6,eficiencia6,segmento16,cuota16,eficiencia16,banco,prestador,
-          representante_legal,entrevistado,firma,firma1
+          representante_legal,entrevistado,firma,firma1,numero_empleado, nombre_empleado,posicion_empleado
         ) 
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
           ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-          ?,?,?,?,?,?,?)`,
+          ?,?,?,?,?,?,?,?,?,?)`,
       values: [
         fecha, asunto, nombre, lugar, convocado, id_user,
         id_despacho,nombre_despacho, nombre_atiende, cargo_atiende, volumen_cartera,
@@ -75,7 +76,8 @@ export async function POST(request: NextRequest) {
         carta,visita,otro,segmento5,cuota5,eficiencia5,
         segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
         segmento16,cuota16,eficiencia16,
-        banco,prestador,representante_legal,entrevistado,firma,firma1
+        banco,prestador,representante_legal,entrevistado,firma,firma1,
+        numero_empleado, nombre_empleado,posicion_empleado
       ]
     });
     const bitacoraId = result.insertId;

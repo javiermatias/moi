@@ -113,7 +113,10 @@ export const useBitacoraStore = create<BitacoraState>()(
                     representante_legal: '',
                     entrevistado: '',
                     firma:'',
-                    firma1:''
+                    firma1:'',
+                    numero_empleado:'',
+                    nombre_empleado:'',
+                    posicion_empleado:''
                 },
                 setBitacora: (bitacora) => { set({ bitacora }) }, // Update the state with the new incidencia object
 

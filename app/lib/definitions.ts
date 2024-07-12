@@ -70,8 +70,9 @@ export type Bitacora = {
   entrevistado: string;
   firma:string;
   firma1:string;
-
-
+  numero_empleado:string;
+  nombre_empleado:string;
+  posicion_empleado:string;
 }
 
 
