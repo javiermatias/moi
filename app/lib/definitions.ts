@@ -73,6 +73,7 @@ export type Bitacora = {
   numero_empleado:string;
   nombre_empleado:string;
   posicion_empleado:string;
+  fecha_fin:string;
 }
 
 

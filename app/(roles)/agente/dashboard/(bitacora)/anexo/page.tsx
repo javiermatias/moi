@@ -10,6 +10,7 @@ import { createBitacora } from '@/app/services/bitacora.service';
 import SignaturePad from 'react-signature-pad-wrapper'
 import { toast } from 'react-toastify';
 import { Participante, Accion } from '@/app/lib/definitions';
+import { DateTime } from 'luxon';
 
 export default function Anexo() {
 
@@ -95,7 +96,8 @@ export default function Anexo() {
             representante_legal: getValues('representante'),
             entrevistado: getValues('entrevistado'),
             firma: signatureData,
-            firma1: signatureData1
+            firma1: signatureData1,
+            fecha_fin:DateTime.local().toString(),
         };
      
         
@@ -174,7 +176,11 @@ export default function Anexo() {
             representante_legal: '',
             entrevistado: '',
             firma:'',
-            firma1:''
+            firma1:'',
+            numero_empleado:'', 
+            nombre_empleado:'',
+            posicion_empleado:'',        
+            fecha_fin:''
         })
         router.push('/agente/dashboard');
 

@@ -4,9 +4,6 @@ import executeQuery from '../lib/db';
 
  export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams; 
-
-  console.log(searchParams.get('page'));
-
   const page = parseInt(searchParams.get('page') || '1', 10);
   const pageSize = parseInt(searchParams.get('size') || '10', 10);
   
@@ -40,7 +37,7 @@ export async function POST(request: NextRequest) {
     segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
     segmento16,cuota16,eficiencia16,
     banco,prestador,representante_legal,entrevistado,firma,firma1,
-    numero_empleado, nombre_empleado,posicion_empleado
+    numero_empleado, nombre_empleado,posicion_empleado,fecha_fin
 
   } = await request.json();
 
@@ -60,11 +57,12 @@ export async function POST(request: NextRequest) {
           gestionadas,acuses,pendientes_ciceron,deudores,llamada,blaster,sms,whatsapp,
           carta,visita,otro,segmento5,cuota5,eficiencia5, segmento28,eficiencia28,cuota28,
           segmento6,cuota6,eficiencia6,segmento16,cuota16,eficiencia16,banco,prestador,
-          representante_legal,entrevistado,firma,firma1,numero_empleado, nombre_empleado,posicion_empleado
+          representante_legal,entrevistado,firma,firma1,numero_empleado, nombre_empleado,
+          posicion_empleado,fecha_fin
         ) 
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
           ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
-          ?,?,?,?,?,?,?,?,?,?)`,
+          ?,?,?,?,?,?,?,?,?,?,?)`,
       values: [
         fecha, asunto, nombre, lugar, convocado, id_user,
         id_despacho,nombre_despacho, nombre_atiende, cargo_atiende, volumen_cartera,
@@ -77,7 +75,7 @@ export async function POST(request: NextRequest) {
         segmento28,eficiencia28,cuota28,segmento6,cuota6,eficiencia6,
         segmento16,cuota16,eficiencia16,
         banco,prestador,representante_legal,entrevistado,firma,firma1,
-        numero_empleado, nombre_empleado,posicion_empleado
+        numero_empleado, nombre_empleado,posicion_empleado,fecha_fin
       ]
     });
     const bitacoraId = result.insertId;
@@ -107,11 +105,6 @@ export async function POST(request: NextRequest) {
       status: 200
     })
 
-    //const bitacoraId = result.insertId;
-
-
-
-    //console.log('Bitacora inserted successfully!');
   } catch (error) {
     console.error('Error inserting Bitacora:', error);
     return new Response(`${error}`, {
