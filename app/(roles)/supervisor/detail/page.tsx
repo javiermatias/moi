@@ -30,24 +30,141 @@ export default function Page({
         cargo_atiende:'',
         participantes:[],
         semana:'',
-        hora:''
+        hora:'',
+        numero_empleado:'',        
+        nombre_empleado:'',
+        posicion_empleado:'',
+        volumen_cartera: '',
+        saldo_cartera: '',
+        cuota_semana: '',
+        plantilla_ideal: '',
+        plantilla_real: '',
+        telefonicos: '',
+        presenciales: '',
+        descansos: '',
+        bajas: '',
+        altas: '',
+        cartera_rmd: '',
+        saldo_cartera_rmd: '',
+        cuota_semana_rmd: '',
+        total_plan_pago: '',
+        vigentes: '',
+        cancelados: '',
+        normalidad: '',
+        cuota_planes: '',
+        avance_planes: '',
+        elaborados: '',
+        compromiso: '',
+        pendientes: '',
+        demandas: '',
+        gestionadas: '',
+        acuses: '',
+        pendientes_ciceron: '',
+        deudores: '',
+                    llamada: '',
+                    blaster: '',
+                    sms: '',
+                    whatsapp: '',
+                    carta: '',
+                    visita: '',
+                    otro: '',
+                    hallazgos: [],
+                    acciones: [],
+                    segmento5: '',
+                    cuota5: '',
+                    eficiencia5: '',
+                    segmento28: '',
+                    cuota28: '',
+                    eficiencia28: '',
+                    segmento6: '',
+                    cuota6: '',
+                    eficiencia6: '',
+                    segmento16: '',
+                    cuota16: '',
+                    eficiencia16: '',             
+                    banco: '',
+                    prestador: '',
+                    representante_legal: '',
+                    entrevistado: '',
+                    firma:'',
+                    firma1:'',                   
+                    fecha_fin:''
         // Add more fields as needed
       });
       useEffect(() => {
         if (isSuccess && data) {
           setInputs({
-            fecha: new Date(data.bitacora.fecha).toLocaleDateString() || '',
-            asunto: data.bitacora.asunto|| '',
-            nombre: data.bitacora.nombre || '',
-            nombre_atiende:data.bitacora.nombre_atiende || '',
-            lugar: data.bitacora.lugar || '',
-            convocado: data.bitacora.convocado || '',
-            id_despacho: data.bitacora.id_despacho || '',
-            nombre_despacho: data.bitacora.id_despacho || '',
-            cargo_atiende: data.bitacora.cargo_atiende || '',
-            participantes:data.participante|| [],
-            semana:  DateTime.fromISO(data.bitacora.fecha).weekNumber.toString() || '',
-            hora:DateTime.fromISO(data.bitacora.fecha).toFormat('HH:mm').toString() || ''
+            fecha: new Date(data?.bitacora?.fecha).toLocaleDateString() || '',
+            asunto: data?.bitacora?.asunto || '',
+            nombre: data?.bitacora?.nombre || '',
+            nombre_atiende:data?.bitacora?.nombre_atiende || '',
+            lugar: data?.bitacora?.lugar || '',
+            convocado: data?.bitacora?.convocado || '',
+            id_despacho: data?.bitacora?.id_despacho || '',
+            nombre_despacho: data?.bitacora?.id_despacho || '',
+            cargo_atiende:data?.bitacora?.cargo_atiende || '',
+            participantes:data?.participante || [],
+            semana:  DateTime.fromISO(data?.bitacora?.fecha).weekNumber.toString() || '',
+            hora:DateTime.fromISO(data?.bitacora?.fecha).toFormat('HH:mm').toString() || '',
+            numero_empleado:data?.bitacora?.numero_empleado || '',
+            nombre_empleado:data?.bitacora?.nombre_empleado || '',
+            posicion_empleado:data?.bitacora?.posicion_empleado || '',
+            volumen_cartera: data?.bitacora?.volumen_cartera || '',
+            saldo_cartera: data?.bitacora?.saldo_cartera|| '',
+            cuota_semana: data?.bitacora?.cuota_semana || '',
+            plantilla_ideal: data?.bitacora?.plantilla_ideal || '',
+            plantilla_real: data?.bitacora?.plantilla_real || '',
+            telefonicos: data?.bitacora?.telefonicos || '',
+            presenciales: data?.bitacora?.presenciales || '',
+            descansos: data?.bitacora?.descansos || '',
+            bajas: data?.bitacora?.bajas || '',
+            altas: data?.bitacora?.altas || '',
+            cartera_rmd: data?.bitacora?.cartera_rmd || '',
+            saldo_cartera_rmd: data?.bitacora?.saldo_cartera_rmd || '',
+            cuota_semana_rmd: data?.bitacora?.cuota_semana_rmd || '',
+            total_plan_pago: data?.bitacora?.total_plan_pago || '',
+            vigentes: data?.bitacora?.vigentes || '',
+            cancelados: data?.bitacora?.cancelados || '',
+            normalidad: data?.bitacora?.normalidad || '',
+            cuota_planes: data?.bitacora?.cuota_planes || '',
+            avance_planes: data?.bitacora?.avance_planes || '',
+            elaborados: data?.bitacora?.elaborados || '',
+            compromiso: data?.bitacora?.compromiso || '',
+            pendientes: data?.bitacora?.pendientes || '',
+            demandas: data?.bitacora?.demandas || '',
+            gestionadas: data?.bitacora?.gestionadas || '',
+            acuses: data?.bitacora?.acuses || '',
+            pendientes_ciceron: data?.bitacora?.pendientes_ciceron || '',
+            deudores: data?.bitacora?.deudores || '',
+            llamada: data?.bitacora?.llamada || '',
+            blaster: data?.bitacora?.blaster || '',
+            sms: data?.bitacora?.sms || '',
+            whatsapp: data?.bitacora?.whatsapp || '',
+            carta: data?.bitacora?.carta || '',
+            visita: data?.bitacora?.visita || '',
+            otro: data?.bitacora?.otro || '',
+            hallazgos: data?.hallazgos || [],
+            acciones: data?.acciones || [],
+            segmento5: data?.bitacora?.segmento5 || '',
+            cuota5: data?.bitacora?.cuota5 || '',
+            eficiencia5: data?.bitacora?.eficiencia5 || '',
+            segmento28: data?.bitacora?.segmento28 || '',
+            cuota28: data?.bitacora?.cuota28 || '',
+            eficiencia28: data?.bitacora?.eficiencia28 || '',
+            segmento6: data?.bitacora?.segmento6 || '',
+            cuota6: data?.bitacora?.cuota6 || '',
+            eficiencia6: data?.bitacora?.eficiencia6 || '',
+            segmento16: data?.bitacora?.segmento16 || '',
+            cuota16: data?.bitacora?.cuota16 || '',
+            eficiencia16: data?.bitacora?.eficiencia16 || '',             
+            banco: data?.bitacora?.banco || '',
+            prestador: data?.bitacora?.prestador || '',
+            representante_legal: data?.bitacora?.representante_legal || '',
+            entrevistado: data?.bitacora?.entrevistado || '',
+            firma: data?.bitacora?.firma || '',
+            firma1: data?.bitacora?.firma1 || '',                 
+            fecha_fin: data?.bitacora?.fecha_fin || '',
+
             // Map other fields as needed
           });
         }
@@ -68,7 +185,7 @@ export default function Page({
 
           <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
               <h5 className="text-xl font-bold mb-2 text-center">Datos Generales</h5>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
 
                   <div className="mb-4">
                       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
@@ -168,6 +285,62 @@ export default function Page({
 
               </div>
 
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+              <h5 className="text-xl font-bold mb-2 text-center">Datos Colaborador</h5>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                  <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="numero_empleado">
+                          Numero empleado
+                      </label>
+                      <input
+                          
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md  text-gray-900 focus:outline-none focus:border-blue-500"
+                          type="text"
+                          id="numero_empleado"
+                          name="numero_empleado"
+                          defaultValue={inputs.numero_empleado}
+                         
+                      />
+                   
+                  </div>
+                  <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre_empleado">
+                          Nombre Colaborador
+                      </label>
+                      <input
+                          
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                          type="text"
+                          id="nombre_empleado"
+                          name="nombre_empleado"
+                          defaultValue={inputs.nombre_empleado}
+                          
+                      />
+                
+                  </div>
+
+                  <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="posicion_empleado">
+                         Posición Colaborador
+                      </label>
+                      <input
+                          
+                          className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                          type="text"
+                          id="posicion_empleado"
+                          name="posicion_empleado"
+                          defaultValue={inputs.posicion_empleado}
+                         
+                      />
+                   
+                  </div>
+
+               
+
+              </div>
           </div>
 
 
@@ -273,6 +446,727 @@ export default function Page({
               </div> 
           </div>
 
+          <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Indicadores de gestión</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="volumen_cartera">
+                                    Volumen Cartera
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="volumen_cartera"
+                                    name="volumen_cartera"
+                                    placeholder="3.."
+                                />
+                                
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="saldo_cartera">
+                                    Saldo cartera
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="saldo_cartera"
+                                    name="saldo_cartera"
+                                    placeholder="3.."
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="atiende">
+                                    Cuota Semana
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="cuota_semana"
+                                    name="cuota_semana"
+                                    placeholder="3.."
+                                />
+                             
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Plantilla Actual</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="plantilla_ideal">
+                                    Plantilla ideal
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="plantilla_ideal"
+                                    name="plantilla_ideal"
+                                    defaultValue={inputs.plantilla_ideal}
+                                />
+                              
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="plantilla_real">
+                                    Plantilla real
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="plantilla_real"
+                                    name="plantilla_real"
+                                    defaultValue={inputs.plantilla_real}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="telefonicos">
+                                    Telefonicos
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="telefonicos"
+                                    name="telefonicos"
+                                    defaultValue={inputs.telefonicos}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="presenciales">
+                                    Presenciales
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="presenciales"
+                                    name="presenciales"
+                                    defaultValue={inputs.presenciales}
+                                />
+                               
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descansos">
+                                    Descansos
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md  text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="descansos"
+                                    name="descansos"
+                                    defaultValue={inputs.descansos}
+                                />
+                                
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bajas">
+                                    Bajas
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="bajas"
+                                    name="bajas"
+                                    defaultValue={inputs.bajas}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="altas">
+                                    Altas
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="altas"
+                                    name="altas"
+                                    defaultValue={inputs.altas}
+                                />
+                               
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Apartado RMD</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cartera_rmd">
+                                    Cartera RMD
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="cartera_rmd"
+                                    name="cartera_rmd"
+                                    defaultValue={inputs.cartera_rmd}
+                                />
+                               
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="saldo_cartera_rmd">
+                                    Saldo Cartera RMD
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="saldo_cartera_rmd"
+                                    name="saldo_cartera_rmd"
+                                    defaultValue={inputs.saldo_cartera_rmd}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cuota_semana_rmd">
+                                    Cuota semana RMD
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="cuota_semana_rmd"
+                                    name="cuota_semana_rmd"
+                                    defaultValue={inputs.cuota_semana_rmd}
+                                />
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Planes de pago</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="total_plan_pago">
+                                    Total Planes de Pago
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="total_plan_pago"
+                                    name="total_plan_pago"
+                                    defaultValue={inputs.total_plan_pago}
+                                />
+                              
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="vigentes">
+                                    Vigentes
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="vigentes"
+                                    name="vigentes"
+                                    defaultValue={inputs.vigentes}
+                                />
+                             
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cancelados">
+                                    Cancelados
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="cancelados"
+                                    name="cancelados"
+                                    defaultValue={inputs.cancelados}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="normalidad">
+                                    Normalidad
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="normalidad"
+                                    name="normalidad"
+                                    defaultValue={inputs.normalidad}
+                                />
+                               
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cuota_planes">
+                                    Cuota Planes
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="cuota_planes"
+                                    name="cuota_planes"
+                                    defaultValue={inputs.cuota_planes}
+                                />
+                               
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="avance_planes">
+                                    Avance Planes
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="avance_planes"
+                                    name="avance_planes"
+                                    defaultValue={inputs.avance_planes}
+                                />
+                              
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Pagares</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="elaborados">
+                                    Elaborados
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="elaborados"
+                                    name="elaborados"
+                                    defaultValue={inputs.elaborados}
+                                />
+                             
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="compromiso">
+                                    Compromiso
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="compromiso"
+                                    name="compromiso"
+                                    defaultValue={inputs.compromiso}
+                                />
+                             
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pendientes">
+                                    Pendientes
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="pendientes"
+                                    name="pendientes"
+                                    defaultValue={inputs.pendientes}
+                                />
+                           
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Cicerón</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="demandas">
+                                    Demandas
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="demandas"
+                                    name="demandas"
+                                    defaultValue={inputs.demandas}
+                                />
+                              
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gestionadas">
+                                    Gestionadas
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="gestionadas"
+                                    name="gestionadas"
+                                    defaultValue={inputs.gestionadas}
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="acuses">
+                                    Acuses(PDF)
+                                </label>
+                                <input
+                                   
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="acuses"
+                                    name="acuses"
+                                    defaultValue={inputs.acuses}
+                                />
+                               
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pendientes_ciceron">
+                                    Pendientes
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="pendientes_ciceron"
+                                    name="pendientes_ciceron"
+                                    defaultValue={inputs.pendientes_ciceron}
+                                />
+                              
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Herramientas de gestión</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
+
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="deudores">
+                                    Deudores
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="deudores"
+                                    name="deudores"
+                                    placeholder="1000.."
+                                />
+                            
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="llamada">
+                                    Llamada
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="llamada"
+                                    name="llamada"
+                                    placeholder="1000"
+                                />
+                               
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="blaster">
+                                    Blaster
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="blaster"
+                                    name="blaster"
+                                    placeholder="2000"
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sms">
+                                    SMS
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="sms"
+                                    name="sms"
+                                    placeholder="2000"
+                                />
+                              
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="whatsapp">
+                                    Whatsapp
+                                </label>
+                                <input
+                                 
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    placeholder="100"
+                                />
+                               
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="carta">
+                                    Carta
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="carta"
+                                    name="carta"
+                                    placeholder="100"
+                                />
+                            
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="visita">
+                                    Visita
+                                </label>
+                                <input
+                               
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="visita"
+                                    name="visita"
+                                    placeholder="50"
+                                />
+                            
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="otro">
+                                    Otro
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="otro"
+                                    name="otro"
+                                    placeholder="50"
+                                />
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Hallazgos</h5>
+                        
+
+                        <div className="w-full max-w-sm mx-auto bg-white p-4 rounded-md shadow-md">
+
+                            <div >
+                                {inputs.hallazgos.length === 0
+                                    ? (
+                                        <p className="px-5 py-2 pt">No hay Hallazgos agregados</p>
+                                    )
+                                    : (
+                                        <div >
+
+                                            <table className="w-full border divide-y divide-gray-200">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-6 py-2">Nombre</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {inputs.hallazgos.map((ph, index) => (
+                                                        <tr key={index}>
+                                                            <td className="px-4 py-2">{ph}</td>
+                                                        
+
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    )}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Compromisos y acciones a realizar</h5>
+                        
+
+                        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+
+                            <div >
+                                {inputs.acciones.length === 0
+                                    ? (
+                                        <p className="px-5 py-2 pt">No hay Acciones agregados</p>
+                                    )
+                                    : (
+                                        <div >
+
+                                            <table className="w-full border divide-y divide-gray-200">
+                                                <thead>
+                                                    <tr>
+                                                        <th className="px-4 py-2">Descripcion</th>
+                                                        <th className="px-4 py-2">Responsable</th>
+                                                        <th className="px-4 py-2">Fecha</th>
+                                                        {/* Add more columns as needed */}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {inputs.acciones.map((accion:any) => (
+                                                        <tr key={accion.id}>
+                                                            <td className="px-4 py-2">{accion.descripcion}</td>
+                                                            <td className="px-4 py-2">{accion.responsable}</td>
+                                                            <td className="px-4 py-2">{accion.fecha}</td>
+                                                          
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    )}
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <table className="min-w-full bg-white border border-gray-200 mt-6 mb-6">
+                        <thead>
+                            <tr>
+                                <th className="py-2 px-4 border-b border-gray-200">Segmento</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Indicador EPR</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Eficiencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input id="segmento5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 5" />
+                                 
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input id="cuota5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$210" />
+                                
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input id="eficiencia5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".90%" />
+                                 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="segmento28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 28" />
+                                  
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="cuota28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$50" />
+                                   
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="eficiencia28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".21%" />
+                                  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="segmento6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 6" />
+                                   
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="cuota6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$34" />
+                                 
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="eficiencia6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".15%" />
+                                  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="segmento16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 16" />
+                                  
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input id="cuota16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$7" />
+                                   
+                                </td>
+                                <td className="py-2 px-4 border-b border-gray-200">
+                                    <input  id="eficiencia16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".004%" />
+                                  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
+                  
 
 
 
