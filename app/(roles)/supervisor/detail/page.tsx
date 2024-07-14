@@ -1,7 +1,8 @@
 'use client'
 import { useQuery } from "@tanstack/react-query";
 import { DateTime } from "luxon";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import SignaturePad from "react-signature-pad-wrapper";
 
 export default function Page({
     searchParams,
@@ -11,6 +12,8 @@ export default function Page({
     };
   }) {
     const currentPage = Number(searchParams?.id) || 1;
+    const sigCanvas = useRef<SignaturePad | null>(null);
+    const sigCanvas1 = useRef<SignaturePad | null>(null);
     const { isPending, error, data,isSuccess } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
@@ -88,7 +91,8 @@ export default function Page({
                     entrevistado: '',
                     firma:'',
                     firma1:'',                   
-                    fecha_fin:''
+                    fecha_fin:'',
+                    hora_fin:''
         // Add more fields as needed
       });
       useEffect(() => {
@@ -143,8 +147,8 @@ export default function Page({
             carta: data?.bitacora?.carta || '',
             visita: data?.bitacora?.visita || '',
             otro: data?.bitacora?.otro || '',
-            hallazgos: data?.hallazgos || [],
-            acciones: data?.acciones || [],
+            hallazgos: data?.hallazgo || [],
+            acciones: data?.accion || [],
             segmento5: data?.bitacora?.segmento5 || '',
             cuota5: data?.bitacora?.cuota5 || '',
             eficiencia5: data?.bitacora?.eficiencia5 || '',
@@ -164,9 +168,12 @@ export default function Page({
             firma: data?.bitacora?.firma || '',
             firma1: data?.bitacora?.firma1 || '',                 
             fecha_fin: data?.bitacora?.fecha_fin || '',
+            hora_fin:DateTime.fromISO(data?.bitacora?.fecha_fin).toFormat('HH:mm').toString() || '',
 
             // Map other fields as needed
           });
+          sigCanvas.current?.fromDataURL(data?.bitacora?.firma.toString() || '');
+          sigCanvas1.current?.fromDataURL(data?.bitacora?.firma1.toString() || '');
         }
       }, [isSuccess, data]);
     
@@ -176,6 +183,10 @@ export default function Page({
     if(isSuccess){
 
         console.table(data);
+        console.log(data.firma)
+        console.log(data.firma1)
+        //sigCanvas.current?.fromDataURL(data.firma);
+        //sigCanvas1.current?.fromDataURL(data.firma1);
     }
 
     return (
@@ -461,7 +472,7 @@ export default function Page({
                                     type="text"
                                     id="volumen_cartera"
                                     name="volumen_cartera"
-                                    placeholder="3.."
+                                    defaultValue={inputs.volumen_cartera}
                                 />
                                 
                             </div>
@@ -475,7 +486,7 @@ export default function Page({
                                     type="text"
                                     id="saldo_cartera"
                                     name="saldo_cartera"
-                                    placeholder="3.."
+                                    defaultValue={inputs.saldo_cartera}
                                 />
                               
                             </div>
@@ -490,7 +501,7 @@ export default function Page({
                                     type="text"
                                     id="cuota_semana"
                                     name="cuota_semana"
-                                    placeholder="3.."
+                                    defaultValue={inputs.cuota_semana}
                                 />
                              
                             </div>
@@ -894,7 +905,7 @@ export default function Page({
                                     type="text"
                                     id="deudores"
                                     name="deudores"
-                                    placeholder="1000.."
+                                    defaultValue={inputs.deudores}
                                 />
                             
                             </div>
@@ -908,7 +919,7 @@ export default function Page({
                                     type="text"
                                     id="llamada"
                                     name="llamada"
-                                    placeholder="1000"
+                                    defaultValue={inputs.llamada}
                                 />
                                
                             </div>
@@ -923,7 +934,7 @@ export default function Page({
                                     type="text"
                                     id="blaster"
                                     name="blaster"
-                                    placeholder="2000"
+                                    defaultValue={inputs.blaster}
                                 />
                               
                             </div>
@@ -938,7 +949,7 @@ export default function Page({
                                     type="text"
                                     id="sms"
                                     name="sms"
-                                    placeholder="2000"
+                                    defaultValue={inputs.sms}
                                 />
                               
                             </div>
@@ -953,7 +964,7 @@ export default function Page({
                                     type="text"
                                     id="whatsapp"
                                     name="whatsapp"
-                                    placeholder="100"
+                                    defaultValue={inputs.whatsapp}
                                 />
                                
                             </div>
@@ -968,7 +979,7 @@ export default function Page({
                                     type="text"
                                     id="carta"
                                     name="carta"
-                                    placeholder="100"
+                                    defaultValue={inputs.carta}
                                 />
                             
                             </div>
@@ -983,7 +994,7 @@ export default function Page({
                                     type="text"
                                     id="visita"
                                     name="visita"
-                                    placeholder="50"
+                                    defaultValue={inputs.visita}
                                 />
                             
                             </div>
@@ -998,7 +1009,7 @@ export default function Page({
                                     type="text"
                                     id="otro"
                                     name="otro"
-                                    placeholder="50"
+                                    defaultValue={inputs.otro}
                                 />
 
                             </div>
@@ -1015,7 +1026,7 @@ export default function Page({
                         <div className="w-full max-w-sm mx-auto bg-white p-4 rounded-md shadow-md">
 
                             <div >
-                                {inputs.hallazgos.length === 0
+                                {inputs.hallazgos?.length === 0
                                     ? (
                                         <p className="px-5 py-2 pt">No hay Hallazgos agregados</p>
                                     )
@@ -1025,16 +1036,16 @@ export default function Page({
                                             <table className="w-full border divide-y divide-gray-200">
                                                 <thead>
                                                     <tr>
-                                                        <th className="px-6 py-2">Nombre</th>
+                                                        <th className="px-6 py-2">Descripcion</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {inputs.hallazgos.map((ph, index) => (
+                                                    {inputs.hallazgos?.map((ph:any, index) => (
                                                         <tr key={index}>
-                                                            <td className="px-4 py-2">{ph}</td>
-                                                        
-
+                                                            <td className="px-4 py-2">{ph.descripcion}</td>
+                                                         
+                                                           
                                                         </tr>
                                                     ))}
                                                 </tbody>
@@ -1105,57 +1116,69 @@ export default function Page({
                         <tbody>
                             <tr>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input id="segmento5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 5" />
+                                    <input id="segmento5" type="text" className="w-full border rounded px-2 py-1 text-gray-900"
+                                     defaultValue={inputs.segmento5} />
                                  
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input id="cuota5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$210" />
+                                    <input id="cuota5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.cuota5} />
                                 
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input id="eficiencia5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".90%" />
+                                    <input id="eficiencia5" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                     defaultValue={inputs.eficiencia5}  />
                                  
                                 </td>
                             </tr>
                             <tr>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="segmento28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 28" />
+                                    <input  id="segmento28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.segmento28} />
                                   
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="cuota28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$50" />
+                                    <input  id="cuota28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                   defaultValue={inputs.cuota28} />
                                    
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="eficiencia28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".21%" />
+                                    <input  id="eficiencia28" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.eficiencia28} />
                                   
                                 </td>
                             </tr>
                             <tr>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="segmento6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 6" />
+                                    <input  id="segmento6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                   defaultValue={inputs.segmento6} />
                                    
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="cuota6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$34" />
+                                    <input  id="cuota6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.cuota6} />
                                  
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="eficiencia6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".15%" />
+                                    <input  id="eficiencia6" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.eficiencia6} />
                                   
                                 </td>
                             </tr>
                             <tr>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="segmento16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="Segmento 16" />
+                                    <input  id="segmento16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.segmento16} />
                                   
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input id="cuota16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder="$7" />
+                                    <input id="cuota16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.cuota16} />
                                    
                                 </td>
                                 <td className="py-2 px-4 border-b border-gray-200">
-                                    <input  id="eficiencia16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" placeholder=".004%" />
+                                    <input  id="eficiencia16" type="text" className="w-full border rounded px-2 py-1 text-gray-900" 
+                                    defaultValue={inputs.eficiencia16} />
                                   
                                 </td>
                             </tr>
@@ -1163,12 +1186,145 @@ export default function Page({
                     </table>
 
 
+                    <div className="bg-white rounded-lg shadow-md p-6 mb-4 mx-3">
+                        <h5 className="text-xl font-bold mb-2 text-center">ANEXO.</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
 
 
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="banco">
+                                    EL BANCO
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="banco"
+                                    name="banco"
+                                    defaultValue={inputs.banco}
+                                />
+                           
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="prestador">
+                                    EL PRESTADOR
+                                </label>
+                                <input
+                                
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="prestador"
+                                    name="prestador"
+                                    defaultValue={inputs.prestador}
+                                />
+                              
+                            </div>
 
-                  
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistador">
+                                    Firma entrevistador
+                                </label>
+                                <div style={{border:"1px solid black"}}>
+                                <SignaturePad ref={sigCanvas}/>
+                   
+                                </div>
+                            
+                      
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firma_entrevistado">
+                                    Firma entrevistado
+                                </label>
+                                <div style={{border:"1px solid black"}}>
+                                <SignaturePad ref={sigCanvas1}/>
+                                </div>
+                                <div>
+           
+            
+          </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700  text-sm font-bold mb-2" htmlFor="representante">
+                                    Representante Legal
+                                </label>
+                                <input
+                                  
+                                    className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="representante"
+                                    name="representante"
+                                    defaultValue={inputs.representante_legal}
+                                />
+                            
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="entrevistado">
+                                    Entrevistado
+                                </label>
+                                <input
+                               
+                                    className="w-full px-3 py-2 text-gray-900 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                                    type="text"
+                                    id="entrevistado"
+                                    name="entrevistado"
+                                    defaultValue={inputs.entrevistado}
+                                />
+                           
+                            </div>
 
 
+                        </div>
+                        <p className="text-sm font-bold mb-2 text-center text-red-400 ">ESTOY ENTERADO Y FIRMO DE CONFORMIDAD.</p>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+                    <h2 className="text-xl font-bold mb-2 text-center">HORARIOS.</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
+
+                  <div className="mb-4">
+                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="hora_inicio">
+                          Hora Inicio
+                      </label>
+
+                      <input
+                         
+                          className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:border-blue-500"
+                          type="text"
+                          id="hora_inicio"
+                          name="hora_inicio"
+                          defaultValue={inputs.hora}
+                      
+
+                      />
+                  </div>
+        
+        
+
+               
+
+                  <div className="mb-4">
+                 
+                      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="hora">
+                          Hora Fin
+                      </label>
+                      <input
+                                                   
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:border-blue-500"
+                          type="text"
+                          id="hora_fin"
+                          name="hora_fin"
+                          defaultValue={inputs.hora_fin}
+                         
+                      />
+                   
+                  </div>
+
+              </div>
+
+          </div>
 
       </form>
   </div>

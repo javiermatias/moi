@@ -1,11 +1,8 @@
 
 import CardWrapper, { Card } from "../../../../ui/dashboard/cards";
-import LatestInvoices from "../../../../ui/dashboard/latest-invoices";
-import RevenueChart from "../../../../ui/dashboard/revenue-chart";
 import { lusitana } from "../../../../ui/fonts";
 import { Suspense } from 'react';
-import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from '@/app/ui/skeletons';
-import { auth } from "@/auth";
+import { CardsSkeleton} from '@/app/ui/skeletons';
 
 
 export default async function Page() {
@@ -15,7 +12,14 @@ export default async function Page() {
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>
-
+      
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Suspense fallback={<CardsSkeleton />}>
+        <Card title="Bitacoras Armadas" value={1} type="collected" />
+      
+        </Suspense>
+      </div>
+{/* 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>
           <CardWrapper />
@@ -30,7 +34,7 @@ export default async function Page() {
           <LatestInvoices />
         </Suspense>
 
-      </div>
+      </div> */}
     </main>
   );
 }

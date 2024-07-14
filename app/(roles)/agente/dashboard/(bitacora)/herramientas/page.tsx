@@ -29,8 +29,6 @@ export default function Despacho() {
     const router = useRouter()
 
     useEffect(() => {
-
-
         if (bitacora.deudores) setValue('deudores', bitacora.deudores);
         if (bitacora.llamada) setValue('llamada', bitacora.llamada);
         if (bitacora.blaster) setValue('blaster', bitacora.blaster);
@@ -439,7 +437,7 @@ export default function Despacho() {
                             </div>
 
                             <div className="mb-4">
-                                <label className="max-sm:hidden block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
+                                <label className="max-sm:hidden block text-gray-700 text-sm font-bold mb-2" htmlFor="accion">
                                     Agregar
                                 </label>
 

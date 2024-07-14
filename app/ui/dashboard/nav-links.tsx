@@ -16,8 +16,8 @@ const links = [
     name: 'Bitacoras',
     href: '/agente/dashboard/datos?id=0',
     icon: DocumentDuplicateIcon,
-  },
-  { name: 'Customers', href: '/agente/dashboard/customers', icon: UserGroupIcon },
+  }
+
 ];
 
 export default function NavLinks() {
