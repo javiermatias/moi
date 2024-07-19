@@ -12,7 +12,7 @@ export default function Page() {
   const searchParams = useSearchParams()
 
   const numbStep = Number.parseInt(searchParams.get('id') || '0')
-  console.log(numbStep);
+  //console.log(numbStep);
 
   const [step, setStep] = useState(numbStep);
 

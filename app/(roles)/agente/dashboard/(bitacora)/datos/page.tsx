@@ -16,7 +16,7 @@ export default function DatosGenerales() {
     const { data: session } = useSession()
     let user: any = { ...session?.user }    
     const { bitacora, setBitacora } = useBitacoraStore()
-    console.log(bitacora)
+    //console.log(bitacora)
     const {
         register,
         handleSubmit,
@@ -30,7 +30,7 @@ export default function DatosGenerales() {
     const searchParams = useSearchParams()
     const numbStep = Number.parseInt(searchParams.get('id') || '0')
     const [participante, setParticipante] = useState(new Array<Participante>());
-    console.table(user);
+    //console.table(user);
 
     useEffect(() => {
 

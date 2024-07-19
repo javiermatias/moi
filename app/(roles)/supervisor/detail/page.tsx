@@ -182,9 +182,9 @@ export default function Page({
 
     if(isSuccess){
 
-        console.table(data);
-        console.log(data.firma)
-        console.log(data.firma1)
+        //console.table(data);
+        //console.log(data.firma)
+        //console.log(data.firma1)
         //sigCanvas.current?.fromDataURL(data.firma);
         //sigCanvas1.current?.fromDataURL(data.firma1);
     }

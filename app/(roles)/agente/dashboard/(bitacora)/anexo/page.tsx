@@ -69,11 +69,11 @@ export default function Anexo() {
         const isEmpty = sigCanvas.current.isEmpty();
         if(isEmpty){
             toast.error('Tienes que firmar!')
-            console.log("errorfirma")
+            //console.log("errorfirma")
             return;
         }else{
             signatureData = sigCanvas.current.toDataURL();
-            console.log(signatureData);  
+            //console.log(signatureData);  
         }
   
         }
