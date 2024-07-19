@@ -1,5 +1,5 @@
 import mysql from 'serverless-mysql';
-
+//import mysql from ‘mysql2/promise’;
 interface QueryProps {
     query: string;
     values: any[];
