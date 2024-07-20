@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config) => {
+    config.optimization.minimize = false;
+    return config;
+  },
     experimental: {
         // …
-        serverComponentsExternalPackages: ['@react-pdf/renderer'],
-        target: 'serverless',
+        serverComponentsExternalPackages: ['@react-pdf/renderer']
       }
 };
 
