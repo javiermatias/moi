@@ -190,17 +190,17 @@ export default function Page({
     }
 
     return (
-      <div className="w-full container mx-auto py-8">
+      <div className="w-full container mx-auto">
   
-      <form className="w-full max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-md shadow-md">
+      <form className="w-full max-w-6xl mx-auto bg-white p-4 md:p-2 rounded-md shadow-md">
 
-          <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
+          <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-2">
               <h5 className="text-xl font-bold mb-2 text-center">Datos Generales</h5>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
 
                   <div className="mb-4">
                       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
-                          Fecha
+                          Fecha 
                       </label>
 
                       <input
@@ -430,10 +430,10 @@ export default function Page({
               <h5 className="text-xl font-bold mb-2 text-center">Participantes Reunion</h5>
           
 
-            <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+            <div className="w-full bg-white p-2 rounded-md shadow-md">
 
                   <div
-                      className="w-full overflow-y-auto border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                      className="w-full  border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
 
                   >
                       <div className={`px-5 py-2 pt`}>
@@ -443,7 +443,7 @@ export default function Page({
                               )
                               : (
                                   <div className="px-5 py-2 pt">
-                                    <ul>
+                                    <ul className="text-center">
                                    {inputs.participantes.map((part:any) => (
                                     <li key={part.id}>
                                      {part.nombre} - {part.puesto}
@@ -1023,7 +1023,7 @@ export default function Page({
                         <h5 className="text-xl font-bold mb-2 text-center">Hallazgos</h5>
                         
 
-                        <div className="w-full max-w-sm mx-auto bg-white p-4 rounded-md shadow-md">
+                        <div className="w-full  bg-white p-4 rounded-md shadow-md">
 
                             <div >
                                 {inputs.hallazgos?.length === 0
@@ -1036,14 +1036,14 @@ export default function Page({
                                             <table className="w-full border divide-y divide-gray-200">
                                                 <thead>
                                                     <tr>
-                                                        <th className="px-6 py-2">Descripcion</th>
+                                                        <th className="text-center px-6 py-2">Descripcion</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {inputs.hallazgos?.map((ph:any, index) => (
                                                         <tr key={index}>
-                                                            <td className="px-4 py-2">{ph.descripcion}</td>
+                                                            <td className="text-center px-4 py-2">{ph.descripcion}</td>
                                                          
                                                            
                                                         </tr>
@@ -1065,7 +1065,7 @@ export default function Page({
                         <h5 className="text-xl font-bold mb-2 text-center">Compromisos y acciones a realizar</h5>
                         
 
-                        <div className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+                        <div className="w-full  bg-white p-8 rounded-md shadow-md">
 
                             <div >
                                 {inputs.acciones.length === 0
