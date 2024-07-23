@@ -196,7 +196,7 @@ export default function Page({
 
           <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-2">
               <h5 className="text-xl font-bold mb-2 text-center">Datos Generales</h5>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full p-2 md:p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
                   <div className="mb-4">
                       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fecha">
@@ -1102,8 +1102,22 @@ export default function Page({
 
                         </div>
                     </div>
-
-
+                    
+                    <div className="bg-white rounded-lg shadow-md mb-4 w-full p-2 md:p-6">
+                        <h5 className="text-xl font-bold mb-2 text-center">Herramientas de gestión</h5>
+                        <p className="text-sm">
+                            <strong>Mayor o igual 100%</strong>. Goteo del segmento donde se logró EPR. (cabe mencionar que en segmento temprano debe considerarse volumen de cartera mayor a 1000 deudores.)
+                        </p>
+                        <p className="text-sm">
+                            <strong>90 - 100%</strong>. Se mantiene Cartera (no se realiza movimiento, a Favor o En contra) pérdida de cartera por pase Natural, solo a petición o estrategia de dirección.
+                        </p>
+                        <p className="text-sm">
+                            <strong>80 - 89.99%</strong>. Retiro parcial de portafolio. (Importante que cada lunes de semana envíen archivos de abanderamiento para no afectar en el retiro de deudores con negociación.) entiéndase como abanderamiento planes de pago, recurrentes, promesas de pago especificando fecha.
+                        </p>
+                        <p className="text-sm">
+                            <strong>Menor de 79.99%</strong>. Se puede considerar el retiro Total de portafolio, despacho en Evaluación de proyecto.
+                        </p>
+                    </div>
 
                     <table className="min-w-full bg-white border border-gray-200 mt-6 mb-6">
                         <thead>
@@ -1278,6 +1292,34 @@ export default function Page({
 
                         </div>
                         <p className="text-sm font-bold mb-2 text-center text-red-400 ">ESTOY ENTERADO Y FIRMO DE CONFORMIDAD.</p>
+                    </div>
+
+                    <div className="bg-white rounded-lg shadow-md mb-4 w-full p-2 md:p-6 text-center">
+                        {/* <h5 className="text-xl font-bold mb-2 text-center">ENVIAR POR TELEGRAM O CORREO </h5> */}
+                        <p className="text-sm">
+                            Cumplir con Indicadores (Eficiencia, EPR, Cobranza, RMD, Planes de Pago, Abonos, otros.)
+                        </p>
+                        <p className="text-sm">
+                            Horario de 8:00 a 21:00 hrs los 7 días de la semana.
+                        </p>
+                        <p className="text-sm">
+                            Proporcionar información de gestion.
+                        </p>
+                        <p className="text-sm">
+                            Plantilla especializada en segmento, planes de pago, productos (Consumo, TOR, Italika, otros),
+                        </p>
+                        <p className="text-sm">
+                            Gestores finales registrados en SCL y contar con conexión (6 dias a la semana)
+                        </p>
+                        <p className="text-sm">
+                            Utilizar las herramientas de CL (Paga Fácil, Pagaré Electrónico, Aztecargo, Demanda Digital, Movilizate)
+                        </p>
+                        <p className="text-sm">
+                            Envió semanal de carteo.
+                        </p>
+
+                        <p className="text-sm font-bold mb-2 text-center text-red-400 ">El incumplimiento de las reglas operativas, estan estipuladas en contrato y podran ser motivo de sanción.</p>
+
                     </div>
 
                     <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
