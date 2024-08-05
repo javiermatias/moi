@@ -311,7 +311,7 @@ export default function Anexo() {
                     </div>
 
                     <div className="bg-white rounded-lg shadow-md mb-4 w-full p-2 md:p-6">
-                        {/* <h5 className="text-xl font-bold mb-2 text-center">ENVIAR POR TELEGRAM O CORREO </h5> */}
+                       <h5 className="text-xl font-bold mb-2 text-center">Reglas Operativas </h5> 
                         <p className="text-sm">
                             Cumplir con Indicadores (Eficiencia, EPR, Cobranza, RMD, Planes de Pago, Abonos, otros.)
                         </p>

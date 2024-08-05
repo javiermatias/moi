@@ -144,7 +144,7 @@ export default function Despacho() {
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl mx-auto bg-white p-4 md:p-8 rounded-md shadow-md">
 
                 <div className="bg-white rounded-lg shadow-md  mb-4 w-full p-2 md:p-6">
-                        <h5 className="text-xl font-bold mb-2 text-center">Herramientas de gestión</h5>
+                        <h5 className="text-xl font-bold mb-2 text-center">Paramestros de asignación</h5>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full p-2 md:p-6">
 
 
@@ -521,7 +521,7 @@ export default function Despacho() {
                             <tr>
                                 <th className="py-2 px-4 border-b border-gray-200">Segmento</th>
                                 <th className="py-2 px-4 border-b border-gray-200">Indicador EPR</th>
-                                <th className="py-2 px-4 border-b border-gray-200">Eficiencia</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Alcance de cuota</th>
                             </tr>
                         </thead>
                         <tbody>

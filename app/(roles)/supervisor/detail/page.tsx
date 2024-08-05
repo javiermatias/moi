@@ -1124,7 +1124,7 @@ export default function Page({
                             <tr>
                                 <th className="py-2 px-4 border-b border-gray-200">Segmento</th>
                                 <th className="py-2 px-4 border-b border-gray-200">Indicador EPR</th>
-                                <th className="py-2 px-4 border-b border-gray-200">Eficiencia</th>
+                                <th className="py-2 px-4 border-b border-gray-200">Alcance de cuota</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1295,7 +1295,7 @@ export default function Page({
                     </div>
 
                     <div className="bg-white rounded-lg shadow-md mb-4 w-full p-2 md:p-6 text-center">
-                        {/* <h5 className="text-xl font-bold mb-2 text-center">ENVIAR POR TELEGRAM O CORREO </h5> */}
+                      <h5 className="text-xl font-bold mb-2 text-center">Reglas Operativas</h5> 
                         <p className="text-sm">
                             Cumplir con Indicadores (Eficiencia, EPR, Cobranza, RMD, Planes de Pago, Abonos, otros.)
                         </p>
