@@ -31,15 +31,7 @@ export default function BitacoraTable({
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-       {/*    <div className="block md:hidden sm:hidden">
-            {data?.result?.map((bitacora:Bitacora) => (
-              <div
-                key={bitacora.id}
-                className="mb-2 w-full rounded-md bg-white p-4"
-              >       
-              </div>
-            ))}
-          </div> */}
+
           <table className="min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
